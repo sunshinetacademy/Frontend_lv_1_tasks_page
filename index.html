@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة تدريبات Sunshine T Academy</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--pri:#1a5c3a;--pri2:#2d8a5e;--priS:#e8f5ee;
+--sec:#d4a03c;--secS:#f5e6c8;
+--acc:#0e7490;--accS:#e0f2f7;
+--bg:#f8f6f2;--card:#fff;--soft:#f0ede8;
+--td:#1a1a2e;--tb:#3d3d56;--tm:#6b7280;--bd:#e2ddd5;
+--ok:#16a34a;--okB:#dcfce7;--okBd:#86efac;
+--no:#dc2626;--noB:#fee2e2;--noBd:#fca5a5;
+--wa:#d97706;--waB:#fef3c7;
+--r:14px;--sh:0 2px 12px rgba(0,0,0,.06);--shL:0 8px 30px rgba(0,0,0,.1);
+}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--tb);line-height:1.8;min-height:100vh}
+.hdr{background:linear-gradient(135deg,var(--pri),var(--pri2));padding:14px 0;position:sticky;top:0;z-index:999;box-shadow:0 3px 15px rgba(26,92,58,.3)}
+.hdr-in{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;font-weight:900;font-size:1.1rem}
+.logo-s{width:38px;height:38px;background:var(--sec);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.ubadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 16px;border-radius:20px;font-size:.9rem;font-weight:700;display:none}
+.scr{display:none}.scr.on{display:block;animation:fadeUp .45s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.wrp{max-width:900px;margin:0 auto;padding:30px 20px}
+.reg-hero{text-align:center;padding:50px 20px 30px}
+.reg-hero .big{font-size:4rem;display:block;margin-bottom:12px}
+.reg-hero h1{font-size:1.9rem;color:var(--pri);margin-bottom:8px}
+.reg-hero p{color:var(--tm);font-size:1.05rem}
+.reg-card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:35px 30px;max-width:520px;margin:20px auto;box-shadow:var(--shL)}
+.reg-card h2{text-align:center;color:var(--pri);margin-bottom:25px;font-size:1.3rem}
+.fld{margin-bottom:20px}
+.fld label{display:block;font-weight:700;color:var(--td);margin-bottom:7px;font-size:.95rem}
+.fld input{width:100%;padding:12px 16px;border:2px solid var(--bd);border-radius:10px;font-family:'Cairo';font-size:1rem;color:var(--td);background:var(--bg);transition:border-color .3s}
+.fld input:focus{outline:none;border-color:var(--pri);background:#fff}
+.fld .err{color:var(--no);font-size:.85rem;margin-top:4px;display:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 32px;border:none;border-radius:10px;font-family:'Cairo';font-size:1.05rem;font-weight:800;cursor:pointer;transition:all .25s}
+.btn-go{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;width:100%;box-shadow:0 4px 15px rgba(26,92,58,.3)}
+.btn-go:hover{transform:translateY(-2px)}
+.btn-out{background:transparent;color:var(--pri);border:2px solid var(--pri)}
+.btn-out:hover{background:var(--priS)}
+.btn-gold{background:linear-gradient(135deg,var(--sec),#b8860b);color:#fff}
+.btn-gold:hover{transform:translateY(-2px)}
+.lh{text-align:center;margin-bottom:25px}
+.lh h2{font-size:1.7rem;color:var(--pri)}
+.lh p{color:var(--tm)}
+.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:22px}
+.tab{padding:8px 20px;border:2px solid var(--bd);border-radius:20px;background:var(--card);font-family:'Cairo';font-weight:700;font-size:.9rem;cursor:pointer;transition:all .25s;color:var(--tb)}
+.tab.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.tab:hover:not(.on){border-color:var(--pri);color:var(--pri)}
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.lc{background:var(--card);border:2px solid var(--bd);border-radius:var(--r);padding:22px;transition:all .25s;position:relative;overflow:hidden}
+.lc::before{content:'';position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(90deg,var(--pri),var(--sec))}
+.lc:hover{border-color:var(--pri);transform:translateY(-4px);box-shadow:var(--shL)}
+.lc .nm{display:inline-block;background:var(--priS);color:var(--pri);padding:3px 12px;border-radius:8px;font-size:.8rem;font-weight:800;margin-bottom:8px}
+.lc.ex .nm{background:var(--secS);color:#8a6d1b}
+.lc h3{font-size:1.05rem;color:var(--td);margin-bottom:6px}
+.lc .ds{font-size:.85rem;color:var(--tm);margin-bottom:14px;line-height:1.6}
+.lc .ft{display:flex;justify-content:space-between;align-items:center;border-top:1px dashed var(--bd);padding-top:12px}
+.lc .ct{font-size:.8rem;color:var(--tm)}
+.lc .go{padding:7px 18px;background:var(--pri);color:#fff;border:none;border-radius:8px;font-family:'Cairo';font-weight:700;font-size:.85rem;cursor:pointer;transition:background .25s}
+.lc .go:hover{background:var(--pri2)}
+.qt{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:18px 22px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;box-shadow:var(--sh)}
+.qt h3{color:var(--pri);font-size:1.1rem}
+.qs{display:flex;gap:14px}
+.qst{text-align:center;background:var(--soft);padding:6px 16px;border-radius:10px}
+.qst .v{font-size:1.3rem;font-weight:900;color:var(--pri)}
+.qst .l{font-size:.7rem;color:var(--tm)}
+.pb{height:7px;background:var(--soft);border-radius:4px;margin-bottom:22px;overflow:hidden}
+.pb .fl{height:100%;background:linear-gradient(90deg,var(--pri),var(--sec));border-radius:4px;transition:width .5s ease}
+.qc{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:28px 25px;box-shadow:var(--sh);animation:fadeUp .35s ease}
+.qb{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.bdg{padding:4px 13px;border-radius:8px;font-size:.78rem;font-weight:800}
+.bdg-n{background:var(--pri);color:#fff}
+.bdg-e{background:var(--okB);color:var(--ok)}
+.bdg-m{background:var(--waB);color:var(--wa)}
+.bdg-h{background:var(--noB);color:var(--no)}
+.bdg-t{background:var(--accS);color:var(--acc)}
+.qtx{font-size:1.2rem;font-weight:800;color:var(--td);margin-bottom:20px;line-height:1.9}
+.ops{list-style:none;display:grid;gap:10px}
+.op{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg);border:2px solid var(--bd);border-radius:11px;cursor:pointer;transition:all .25s;font-size:1rem;line-height:1.7}
+.op:hover:not(.lk){border-color:var(--pri);background:var(--priS);transform:translateX(-4px)}
+.op .lt{min-width:36px;height:36px;background:var(--card);border:2px solid var(--bd);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--pri);flex-shrink:0;transition:all .25s}
+.op .ot{flex:1;word-break:break-word}
+.op.pk{border-color:var(--acc);background:var(--accS)}
+.op.pk .lt{background:var(--acc);color:#fff;border-color:var(--acc)}
+.op.rt{border-color:var(--ok);background:var(--okB)}
+.op.rt .lt{background:var(--ok);color:#fff;border-color:var(--ok)}
+.op.wr{border-color:var(--no);background:var(--noB)}
+.op.wr .lt{background:var(--no);color:#fff;border-color:var(--no)}
+.op.lk{cursor:default;opacity:.85}
+.fb{margin-top:18px;padding:16px 20px;border-radius:11px;display:none;animation:fadeUp .35s ease;line-height:1.8}
+.fb.sh{display:block}
+.fb.fr{background:var(--okB);border:2px solid var(--okBd)}
+.fb.fw{background:var(--noB);border:2px solid var(--noBd)}
+.fb h4{margin-bottom:6px;font-size:1.05rem}
+.fb.fr h4{color:var(--ok)}.fb.fw h4{color:var(--no)}
+.fb .ex{font-size:.92rem;color:var(--tb)}
+.qa{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px}
+.bn{padding:12px 30px;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border:none;border-radius:10px;font-family:'Cairo';font-size:1rem;font-weight:800;cursor:pointer;display:none;transition:all .25s}
+.bn.sh{display:inline-flex}
+.bn:hover{transform:translateY(-2px)}
+.bn.fn{background:linear-gradient(135deg,var(--sec),#b8860b)}
+.be{padding:10px 22px;background:transparent;color:var(--tm);border:2px solid var(--bd);border-radius:10px;font-family:'Cairo';font-weight:700;cursor:pointer;transition:all .25s}
+.be:hover{border-color:var(--no);color:var(--no)}
+.rh{background:linear-gradient(135deg,var(--pri),var(--pri2));border-radius:var(--r);padding:40px 30px;text-align:center;color:#fff;margin-bottom:25px}
+.sr{width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.15);border:5px solid rgba(255,255,255,.6);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 18px}
+.sr .b{font-size:2.8rem;font-weight:900;line-height:1}
+.sr .s{font-size:.95rem;opacity:.85}
+.rh h2{font-size:1.6rem;margin-bottom:6px}
+.rh .mt{opacity:.9;font-size:.95rem}
+.rs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:25px}
+.rst{background:var(--card);border:2px solid var(--bd);border-radius:var(--r);padding:18px;text-align:center}
+.rst .i{font-size:1.8rem}.rst .v{font-size:1.7rem;font-weight:900;color:var(--pri)}.rst .l{font-size:.8rem;color:var(--tm)}
+.rst.so{border-color:var(--okBd)}.rst.so .v{color:var(--ok)}
+.rst.sn{border-color:var(--noBd)}.rst.sn .v{color:var(--no)}
+.rb{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:25px;margin-bottom:18px}
+.rb h3{color:var(--pri);margin-bottom:18px;font-size:1.2rem}
+.rq{border:2px solid var(--bd);border-radius:12px;padding:18px;margin-bottom:14px;background:var(--bg)}
+.rq.ro{border-color:var(--okBd);background:var(--okB)}
+.rq.rn{border-color:var(--noBd);background:var(--noB)}
+.rq .rqt{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.rq .rqn{background:var(--pri);color:#fff;padding:3px 12px;border-radius:7px;font-size:.8rem;font-weight:800}
+.rq .rqs{padding:3px 12px;border-radius:7px;font-size:.8rem;font-weight:800}
+.rq .rqs.ok{background:var(--ok);color:#fff}
+.rq .rqs.no{background:var(--no);color:#fff}
+.rq .rqq{font-weight:800;color:var(--td);margin-bottom:10px;font-size:1rem;line-height:1.8}
+.rq .rqa{display:grid;gap:6px;margin-bottom:10px}
+.rq .ra{padding:9px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);font-size:.92rem;display:flex;align-items:center;gap:10px;line-height:1.6}
+.rq .ra.ro2{background:var(--okB);border-color:var(--ok);color:var(--ok);font-weight:700}
+.rq .ra.rn2{background:var(--noB);border-color:var(--no);color:var(--no);text-decoration:line-through}
+.rq .ra .ri{font-weight:900;flex-shrink:0}
+.rq .rqe{background:var(--card);border-right:4px solid var(--acc);padding:12px 15px;border-radius:0 8px 8px 0}
+.rq .rqe strong{color:var(--acc);display:block;margin-bottom:4px;font-size:.85rem}
+.rq .rqe p{font-size:.88rem;color:var(--tb);line-height:1.7}
+.rac{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+@media(max-width:600px){.reg-hero h1{font-size:1.4rem}.qtx{font-size:1.05rem}.qt{flex-direction:column;text-align:center}.lg{grid-template-columns:1fr}}
+@media print{.hdr,.qa,.rac{display:none!important}.scr{display:block!important}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+<div class="hdr-in">
+<div class="logo"><div class="logo-s">☀️</div><span>Sunshine T Academy — منصة التدريبات</span></div>
+<div class="ubadge" id="ubadge"></div>
+</div>
+</header>
+
+<!-- SCR 1 -->
+<div class="scr on" id="s1">
+<div class="wrp">
+<div class="reg-hero">
+<span class="big">☀️</span>
+<h1>أهلاً بيك في منصة التدريبات</h1>
+<p>اختبر نفسك في كل دروس Frontend Level 1 — HTML + CSS</p>
+</div>
+<div class="reg-card">
+<h2>📝 بيانات الطالب</h2>
+<div class="fld">
+<label>الاسم الكامل *</label>
+<input type="text" id="iN" placeholder="اكتب اسمك هنا..." maxlength="60">
+<div class="err" id="eN">من فضلك اكتب اسمك (3 حروف على الأقل)</div>
+</div>
+<div class="fld">
+<label>السن *</label>
+<input type="number" id="iA" placeholder="اكتب سنك..." min="8" max="99">
+<div class="err" id="eA">من فضلك اكتب سن صحيح (8 - 99)</div>
+</div>
+<button class="btn btn-go" id="btnStart">ابدأ الرحلة ←</button>
+</div>
+</div>
+</div>
+
+<!-- SCR 2 -->
+<div class="scr" id="s2">
+<div class="wrp">
+<div class="lh"><h2>📚 اختر الدرس أو الاختبار</h2><p>14 درس + 3 اختبارات شاملة — كل واحد فيهم 20 سؤال</p></div>
+<div class="tabs" id="tbs"></div>
+<div class="lg" id="lgr"></div>
+</div>
+</div>
+
+<!-- SCR 3 -->
+<div class="scr" id="s3">
+<div class="wrp">
+<div class="qt">
+<h3 id="qT"></h3>
+<div class="qs">
+<div class="qst"><div class="v" id="qC">1</div><div class="l">السؤال</div></div>
+<div class="qst"><div class="v" id="qTt">20</div><div class="l">من</div></div>
+<div class="qst"><div class="v" id="qO">0</div><div class="l">صحيح ✓</div></div>
+</div>
+</div>
+<div class="pb"><div class="fl" id="pF" style="width:5%"></div></div>
+<div id="qB"></div>
+<div class="qa">
+<button class="be" id="btnExit">🚪 خروج</button>
+<button class="bn" id="btnNx">التالي ←</button>
+</div>
+</div>
+</div>
+
+<!-- SCR 4 -->
+<div class="scr" id="s4">
+<div class="wrp" id="rB"></div>
+</div>
+
+<script>
+// ============================================================
+//  Sunshine T Academy — Training Platform (FIXED BUILD v3)
+// ============================================================
+
+// ---------- helpers ----------
+function $(id){ return document.getElementById(id); }
+
+function shuffle(a){
+  var b = a.slice(), i, j, t;
+  for(i = b.length - 1; i > 0; i--){
+    j = Math.floor(Math.random() * (i + 1));
+    t = b[i]; b[i] = b[j]; b[j] = t;
+  }
+  return b;
+}
+
+function mixOpts(opts, ci){
+  var p = opts.map(function(t, i){ return {t: t, c: i}; });
+  var m = shuffle(p);
+  var nc = -1;
+  for(var k = 0; k < m.length; k++){
+    if(m[k].c === ci){ nc = k; break; }
+  }
+  return { list: m.map(function(o){ return o.t; }), correct: nc };
+}
+
+// ---------- state ----------
+var stu = {name: '', age: ''};
+var curL = null;
+var curQ = [];
+var curI = 0;
+var ans = [];
+var okN = 0;
+
+// ---------- lessons ----------
+var LS = [
+{id:1,  c:'html', ic:'🌐', t:'مقدمة Web Development + HTML', d:'Frontend / Backend / HTML / CSS / JS — هيكل صفحة HTML وDOCTYPE وHead وBody'},
+{id:2,  c:'html', ic:'📝', t:'HTML Elements & Content', d:'Headings, Paragraphs, Lists, Links, Images, Attributes وتنظيم ملفات المشروع'},
+{id:3,  c:'html', ic:'🧠', t:'Semantic HTML', d:'Header, Nav, Main, Section, Article, Aside, Footer مع أساسيات Accessibility وSEO'},
+{id:4,  c:'html', ic:'📊', t:'Tables & Forms', d:'Tables, Colspan/Rowspan, Forms, Input Types, Label, Select, Textarea, Button'},
+{id:5,  c:'html', ic:'🎬', t:'HTML Media & Page Setup', d:'Audio, Video, iframe, Meta, Charset, Viewport وأفضل الممارسات'},
+{id:6,  c:'css',  ic:'🎨', t:'CSS Fundamentals', d:'Inline / Internal / External CSS — Selectors, Class, ID, Colors, Backgrounds, Units'},
+{id:7,  c:'css',  ic:'🔤', t:'Typography + Box Model', d:'Fonts, Text, Margin, Padding, Border, Box-sizing وبناء عناصر منظمة'},
+{id:8,  c:'css',  ic:'📦', t:'Display + Position', d:'Block, Inline, Inline-block, None — Relative, Absolute, Fixed, Sticky, Z-index'},
+{id:9,  c:'css',  ic:'🚂', t:'Flexbox', d:'Direction, Justify-content, Align-items, Wrap, Gap, Flex — Navigation وCards'},
+{id:10, c:'css',  ic:'🔲', t:'CSS Grid', d:'Rows, Columns, Gap, fr, Grid-column, Grid-row — ومتى نستخدم Grid أو Flexbox'},
+{id:11, c:'css',  ic:'📱', t:'Responsive Web Design', d:'Mobile / Tablet / Desktop — Media Queries, Mobile-first, Flexible Units'},
+{id:12, c:'css',  ic:'✨', t:'Advanced CSS & Effects', d:'CSS Variables, calc, min/max/clamp, Shadows, Gradients, Transitions, Transform وHover'},
+{id:13, c:'proj', ic:'🏗️', t:'مشروع تطبيقي شامل', d:'دمج HTML + CSS + Semantic HTML + Flexbox + Grid + Forms + Responsive Design'},
+{id:14, c:'proj', ic:'🎓', t:'Final Project + Review', d:'مراجعة شاملة — مشروع الطالب — تنظيم الملفات والكود'},
+{id:101, c:'exam', ic:'📋', t:'امتحان HTML الشامل', d:'اختبار شامل على كل دروس HTML الخمسة'},
+{id:102, c:'exam', ic:'🎨', t:'امتحان CSS الشامل', d:'اختبار شامل على كل دروس CSS السبعة'},
+{id:103, c:'exam', ic:'🏆', t:'الامتحان النهائي الشامل', d:'اختبار شامل على كل المستوى — جاهز للتخرج'}
+];
+
+// ============================================================
+//  QUESTIONS BANK
+// ============================================================
+var QB = {};
+
+QB[1] = [
+{q:"ما هو تطوير الويب (Web Development)؟",tp:"mcq",df:"easy",ci:1,op:["تصميم الجرافيك والصور فقط","بناء المواقع والتطبيقات اللي بتشتغل على الإنترنت","صيانة أجهزة الكمبيوتر","كتابة المقالات على الإنترنت"],ex:"تطوير الويب هو عملية بناء المواقع والتطبيقات اللي بتشتغل على الإنترنت باستخدام تقنيات زي HTML و CSS و JavaScript."},
+{q:"أي جزء من تطوير الويب مسؤول عن الواجهة اللي بيشوفها المستخدم؟",tp:"mcq",df:"easy",ci:2,op:["Backend","Database","Frontend","Server"],ex:"Frontend هو الجزء اللي بيشوفه المستخدم — الواجهة الأمامية. بيتبنى بـ HTML + CSS + JavaScript."},
+{q:"HTML هي لغة برمجة حقيقية.",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! HTML هي لغة توصيف (Markup Language) مش لغة برمجة. بتوصف هيكل الصفحة مش بتعمل عمليات منطقية."},
+{q:"ما هو العنصر اللي لازم يكون في أول سطر في أي صفحة HTML5؟",tp:"mcq",df:"easy",ci:2,op:["<html>","<head>","<!DOCTYPE html>","<body>"],ex:"<!DOCTYPE html> بيخبر المتصفح إن دي صفحة HTML5. لازم يكون أول سطر قبل أي عنصر تاني."},
+{q:"العنصر <head> فيه:",tp:"mcq",df:"easy",ci:1,op:["المحتوى الظاهر للمستخدم","معلومات عن الصفحة زي العنوان والإعدادات","الصور والفيديوهات","الأزرار والروابط"],ex:"<head> فيه معلومات عن الصفحة زي <title> والـ meta tags والـ CSS. المحتوى ده مش بيظهر للمستخدم مباشرة."},
+{q:"العنصر <body> فيه:",tp:"mcq",df:"easy",ci:1,op:["معلومات الصفحة","كل المحتوى الظاهر للمستخدم","إعدادات المتصفح","الكود السري"],ex:"<body> فيه كل المحتوى اللي بيشوفه المستخدم: النصوص، الصور، الأزرار، الروابط."},
+{q:"ما هو الدور الرئيسي لـ CSS؟",tp:"mcq",df:"easy",ci:1,op:["بناء هيكل الصفحة","تصميم وتنسيق الصفحة","إضافة التفاعل","إدارة قواعد البيانات"],ex:"CSS (Cascading Style Sheets) مسؤول عن التصميم: الألوان، الخطوط، المسافات، الـ Layout."},
+{q:"ما هو الدور الرئيسي لـ JavaScript؟",tp:"mcq",df:"easy",ci:2,op:["بناء هيكل الصفحة","تصميم الصفحة","إضافة التفاعل والوظائف","تخزين البيانات"],ex:"JavaScript هي لغة البرمجة اللي بتضيف التفاعل: أزرار تشتغل، قوائم تفتح، بيانات تتبعت للسيرفر."},
+{q:"Full Stack Developer بيعرف يشتغل على:",tp:"mcq",df:"medium",ci:2,op:["Frontend فقط","Backend فقط","Frontend + Backend مع بعض","HTML فقط"],ex:"Full Stack Developer بيقدر يشتغل على الواجهة الأمامية والخلفية مع بعض — بيبني الموقع كامل."},
+{q:"صفة lang=\"ar\" في عنصر <html> وظيفتها:",tp:"mcq",df:"medium",ci:1,op:["تغيير لون الصفحة","تحديد لغة الصفحة للعربية","تغيير اتجاه الصفحة","إضافة ترجمة تلقائية"],ex:"lang=\"ar\" بتحدد إن لغة الصفحة عربية. مهمة لمحركات البحث وقارئات الشاشة."},
+{q:"صفة dir=\"rtl\" في عنصر <html> وظيفتها:",tp:"mcq",df:"medium",ci:1,op:["تغيير اللغة","تحديد اتجاه الصفحة من اليمين لليسار","تغيير الخط","إضافة أيقونات"],ex:"dir=\"rtl\" (Right to Left) بتخلي اتجاه المحتوى من اليمين لليسار — مناسب للعربي."},
+{q:"HTML و CSS هما نفس الحاجة.",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! HTML للهيكل والمحتوى، CSS للتصميم والتنسيق. الاتنين مختلفين ومكملين لبعض."},
+{q:"أي تشبيه يوصف HTML و CSS بشكل صحيح؟",tp:"mcq",df:"medium",ci:1,op:["HTML = الدهان، CSS = الهيكل","HTML = هيكل البيت، CSS = الدهان والديكور","HTML = الكهرباء، CSS = المياه","HTML = الأثاث، CSS = الحيطة"],ex:"HTML زي هيكل البيت (الأعمدة والجدران)، و CSS زي الدهان والديكور."},
+{q:"ما هو المتصفح (Browser)؟",tp:"mcq",df:"easy",ci:1,op:["لغة برمجة","برنامج بيفتح مواقع الويب ويعرضها","نوع من السيرفرات","قاعدة بيانات"],ex:"المتصفح هو البرنامج اللي بيفتح مواقع الويب ويعرضها: Chrome, Firefox, Edge, Safari."},
+{q:"العنصر <title> بيظهر فين؟",tp:"mcq",df:"medium",ci:1,op:["في وسط الصفحة","في تاب المتصفح ونتائج البحث","في أسفل الصفحة","مش بيظهر خالص"],ex:"<title> بيظهر في تاب المتصفح (Browser Tab) وكمان في نتائج محركات البحث."},
+{q:"meta charset=\"UTF-8\" وظيفته:",tp:"mcq",df:"medium",ci:1,op:["تغيير لون الصفحة","دعم كل اللغات والرموز في الصفحة","تحديد حجم الخط","إضافة أيقونات"],ex:"charset=\"UTF-8\" بيخلي الصفحة تدعم كل اللغات (عربي، إنجليزي، صيني...) والرموز الخاصة."},
+{q:"Backend مسؤول عن:",tp:"mcq",df:"medium",ci:1,op:["الألوان والتصميم","قواعد البيانات والعمليات الخلفية","الصور والفيديوهات","الخطوط والنصوص"],ex:"Backend مسؤول عن اللي بيحصل وراء الكواليس: قواعد البيانات، تسجيل الدخول، العمليات الحسابية."},
+{q:"أي تقنية من دول مش من تقنيات Frontend؟",tp:"mcq",df:"medium",ci:3,op:["HTML","CSS","JavaScript","Node.js"],ex:"Node.js تقنية Backend بتشتغل على السيرفر. تقنيات Frontend هي: HTML + CSS + JavaScript."},
+{q:"meta viewport مهم عشان:",tp:"mcq",df:"hard",ci:1,op:["تغيير لون الصفحة","خلّي الصفحة متجاوبة مع حجم شاشة الموبايل","إضافة صور","تسريع الموقع"],ex:"meta viewport بيخلي الصفحة تتكيف مع حجم شاشة الجهاز. من دونه الـ Responsive مش هيشتغل صح."},
+{q:"أي عنصر من دول مكانه في <body> مش في <head>؟",tp:"mcq",df:"hard",ci:2,op:["<title>","<meta>","<p>","<link>"],ex:"<p> (فقرة) بتروح في <body> لأنها محتوى ظاهر. <head> فيه بس المعلومات والإعدادات."}
+];
+
+QB[2] = [
+{q:"ما هو الـ HTML Element؟",tp:"mcq",df:"easy",ci:1,op:["Opening Tag فقط","Opening Tag + Content + Closing Tag","Attribute داخل الـ Tag","ملف CSS منفصل"],ex:"HTML Element = Opening Tag + Content + Closing Tag. مثال: <p>نص هنا</p>"},
+{q:"كم مرة يجب استخدام <h1> في الصفحة الواحدة؟",tp:"mcq",df:"easy",ci:2,op:["أي عدد من المرات","مرتين","مرة واحدة فقط","ممنوع استخدامه"],ex:"<h1> لازم يتستخدم مرة واحدة بس في الصفحة كعنوان رئيسي. مهم لـ SEO و Accessibility."},
+{q:"الفرق بين <strong> و <b>:",tp:"mcq",df:"medium",ci:1,op:["مفيش فرق","<strong> ليه معنى دلالي (مهم)، <b> مجرد تنسيق شكلي","<b> أفضل من <strong>","<strong> للـ CSS فقط"],ex:"<strong> ليه معنى دلالي — بيوضح إن النص مهم. <b> مجرد تنسيق شكلي."},
+{q:"أي عنصر يعمل سطر جديد داخل فقرة؟",tp:"mcq",df:"easy",ci:1,op:["<hr>","<br>","<newline>","<break>"],ex:"<br> (Break) بيعمل سطر جديد داخل النص. <hr> بيعمل خط فاصل أفقي كامل."},
+{q:"العنصر المستخدم لقائمة غير مرتبة (نقط):",tp:"mcq",df:"easy",ci:2,op:["<ol>","<dl>","<ul>","<list>"],ex:"<ul> (Unordered List) لقائمة غير مرتبة (نقط). <ol> لقائمة مرتبة (أرقام)."},
+{q:"أي صفة في <a> تحدد عنوان الرابط؟",tp:"mcq",df:"easy",ci:2,op:["src","link","href","url"],ex:"href (Hypertext Reference) هي الصفة اللي بتحدد عنوان الرابط في عنصر <a>."},
+{q:"ليه صفة alt في <img> مهمة جداً؟",tp:"mcq",df:"medium",ci:1,op:["لتحديد حجم الصورة","لـ Accessibility و SEO وكبديل لو الصورة ما حملتش","لتحديد لون الصورة","اختيارية ومش مهمة"],ex:"alt مهمة جداً: لقارئات الشاشة، لمحركات البحث، وكنص بديل لو الصورة ما حملتش."},
+{q:"أي عنصر Self-Closing (مش محتاج Closing Tag)؟",tp:"mcq",df:"easy",ci:2,op:["<p>","<div>","<img>","<a>"],ex:"<img> Self-closing لأنه مفيش جواه محتوى. كمان <br>, <hr>, <input>."},
+{q:"الاسم الصحيح للصفحة الرئيسية في أي مشروع:",tp:"mcq",df:"easy",ci:2,op:["home.html","main.html","index.html","start.html"],ex:"الصفحة الرئيسية لازم اسمها index.html. ده المعيار المتبع في كل المواقع والسيرفرات."},
+{q:"أي اسم ملف صحيح حسب Best Practices؟",tp:"mcq",df:"medium",ci:2,op:["My Photo.jpg","my_photo.jpg","my-photo.jpg","MY-PHOTO.JPG"],ex:"أسماء الملفات: حروف صغيرة + dash (-) بدون مسافات. my-photo.jpg هو الصح."},
+{q:"العنصر <em> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["نص عريض","تأكيد على النص (يظهر مائل وليه معنى دلالي)","نص مظلل","نص صغير"],ex:"<em> (Emphasis) بيعمل تأكيد على النص — بيظهر مائل (italic) وليه معنى دلالي."},
+{q:"Nested Lists يعني:",tp:"mcq",df:"medium",ci:1,op:["قائمة طويلة جداً","قائمة جوه قائمة تانية","قائمة مرتبة","قائمة صور"],ex:"Nested Lists = قائمة جوه قائمة تانية. مثال: قائمة أقسام، كل قسم جواه قائمة مواد."},
+{q:"target=\"_blank\" في الرابط وظيفته:",tp:"mcq",df:"medium",ci:1,op:["إغلاق الرابط","فتح الرابط في تاب جديدة في المتصفح","حذف الرابط","تغيير لون الرابط"],ex:"target=\"_blank\" بيخلي الرابط يفتح في تاب جديدة في المتصفح بدلاً من نفس التاب."},
+{q:"rel=\"noopener noreferrer\" مهم مع:",tp:"mcq",df:"hard",ci:1,op:["الروابط الداخلية","target=\"_blank\" للروابط الخارجية لأسباب أمنية","الصور","الفيديوهات"],ex:"rel=\"noopener noreferrer\" مهم مع target=\"_blank\" للروابط الخارجية عشان الأمان."},
+{q:"العنصر <mark> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["نص عريض","تظليل النص (عادةً أصفر)","نص مائل","نص صغير"],ex:"<mark> بيعمل تظليل أصفر على النص — لتمييز كلمة مهمة أو نتيجة بحث."},
+{q:"<sub> و <sup> وظيفتهم:",tp:"mcq",df:"medium",ci:1,op:["نص كبير وصغير","نص سفلي زي H₂O ونص علوي زي x²","نص عريض ومائل","نص مظلل"],ex:"<sub> للنص السفلي زي H₂O. <sup> للنص العلوي زي x²."},
+{q:"التعليقات في HTML بتظهر للمستخدم في الصفحة.",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! التعليقات <!-- --> بتظهر في الكود بس، مش في الصفحة."},
+{q:"المسار ../images/photo.jpg يعني:",tp:"mcq",df:"hard",ci:1,op:["صورة في نفس المجلد","صورة في مجلد images جوه المجلد الأب","صورة من الإنترنت","صورة محذوفة"],ex:".. يعني ارجع لمجلد أعلى. فالصورة في مجلد images جوه المجلد الأب للملف الحالي."},
+{q:"العنصر <hr> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["عنوان","خط أفقي فاصل بين الأقسام","صورة","رابط"],ex:"<hr> (Horizontal Rule) بيعمل خط أفقي فاصل بين الأقسام."},
+{q:"صفة placeholder في <input> وظيفتها:",tp:"mcq",df:"medium",ci:1,op:["قيمة دائمة للحقل","نص إرشادي يظهر جوه الحقل قبل الكتابة","اسم الحقل","لون النص"],ex:"placeholder نص إرشادي بيظهر جوه الحقل قبل ما المستخدم يكتب. بيختفي لما يبدأ الكتابة."}
+];
+
+QB[3] = [
+{q:"ما معنى Semantic HTML؟",tp:"mcq",df:"easy",ci:1,op:["استخدام CSS في HTML","استخدام عناصر ليها معنى واضح بيوصف محتواها","استخدام div لكل شيء","HTML بدون أخطاء"],ex:"Semantic HTML = استخدام عناصر ليها معنى واضح بيوصف محتواها."},
+{q:"العنصر اللي بيحتوي على المحتوى الرئيسي للصفحة (مرة واحدة فقط):",tp:"mcq",df:"easy",ci:2,op:["<header>","<section>","<main>","<article>"],ex:"<main> بيحتوي على المحتوى الرئيسي للصفحة. بيتستخدم مرة واحدة فقط."},
+{q:"الفرق بين <section> و <article>:",tp:"mcq",df:"medium",ci:1,op:["مفيش فرق","<article> محتوى مستقل، <section> جزء من محتوى مرتبط بموضوع","<section> مستقل، <article> جزء","<article> للصور فقط"],ex:"<article> محتوى مستقل يقدر يقف لوحده. <section> جزء من محتوى مرتبط بموضوع."},
+{q:"العنصر المستخدم لقائمة التنقل الرئيسية:",tp:"mcq",df:"easy",ci:2,op:["<menu>","<navigation>","<nav>","<links>"],ex:"<nav> للعناصر الرئيسية للتنقل في الموقع."},
+{q:"ما معنى Accessibility (a11y)؟",tp:"mcq",df:"medium",ci:1,op:["سرعة الموقع","إتاحة الموقع للجميع بما فيهم ذوي الاحتياجات الخاصة","أمان الموقع","تصميم الموبايل"],ex:"Accessibility = إتاحة الموقع لكل الناس بما فيهم المكفوفين."},
+{q:"العنصر المستخدم للمحتوى الجانبي:",tp:"mcq",df:"easy",ci:2,op:["<sidebar>","<side>","<aside>","<section>"],ex:"<aside> للمحتوى الجانبي اللي مش أساسي: شريط جانبي، إعلانات، روابط ذات صلة."},
+{q:"استخدام Semantic HTML بيحسن ترتيب الموقع في محركات البحث.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! محركات البحث بتفهم محتوى الصفحة أفضل لما تستخدم عناصر دلالية واضحة."},
+{q:"العنصر المستخدم لوصف صورة داخل <figure>:",tp:"mcq",df:"medium",ci:2,op:["<caption>","<description>","<figcaption>","<alt>"],ex:"<figcaption> بيوصف الصورة جوه <figure>."},
+{q:"العنصر المستخدم لمحتوى قابل للفتح والإغلاق:",tp:"mcq",df:"medium",ci:1,op:["<toggle>","<details> مع <summary>","<collapse>","<accordion>"],ex:"<details> + <summary> بيعملوا محتوى قابل للفتح والإغلاق بدون JavaScript."},
+{q:"العنصر المستخدم لمعلومات الاتصال:",tp:"mcq",df:"medium",ci:2,op:["<contact>","<info>","<address>","<footer> فقط"],ex:"<address> لمعلومات الاتصال: إيميل، تليفون، عنوان."},
+{q:"<header> و <footer> ممكن يتكرروا في الصفحة الواحدة.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! ممكن يتكرروا جوه <article> أو <section>."},
+{q:"قارئات الشاشة بتستخدم العناصر الدلالية عشان:",tp:"mcq",df:"hard",ci:1,op:["تسريع تحميل الصفحة","تفهم هيكل الصفحة وتقرؤه للمكفوفين بشكل صحيح","تغيير الألوان","حذف العناصر الزائدة"],ex:"قارئات الشاشة بتستخدم العناصر الدلالية عشان تفهم الهيكل."},
+{q:"العنصر <time> وظيفته:",tp:"mcq",df:"medium",ci:1,op:["عرض ساعة متحركة","تحديد تاريخ أو وقت بشكل دلالي","تأخير تحميل الصفحة","إيقاف الفيديو"],ex:"<time> بيحدد تاريخ أو وقت بشكل دلالي."},
+{q:"العناصر <div> و <span> تعتبر عناصر Semantic.",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! <div> و <span> عناصر عامة مش Semantic."},
+{q:"ليه <nav> أفضل من <div class=\"nav\">؟",tp:"mcq",df:"hard",ci:1,op:["أسرع في التحميل","أوضح لمحركات البحث وقارئات الشاشة","أجمل شكلاً","أقل في حجم الكود"],ex:"<nav> أوضح لمحركات البحث وقارئات الشاشة."},
+{q:"<article> مناسب لـ:",tp:"mcq",df:"medium",ci:1,op:["شريط جانبي","مقال مدونة مستقل أو منتج أو تعليق","رأس الصفحة","تذييل الصفحة"],ex:"<article> مناسب لمحتوى مستقل يقدر يقف لوحده."},
+{q:"صفة lang في <html> مهمة لـ:",tp:"mcq",df:"medium",ci:1,op:["التصميم فقط","Accessibility و SEO","الألوان","السرعة"],ex:"lang مهمة لـ Accessibility و SEO."},
+{q:"العنصر <main> ممكن يتكرر أكتر من مرة في الصفحة.",tp:"tf",df:"medium",ci:1,op:["صح","غلط"],ex:"غلط! <main> مرة واحدة بس في الصفحة."},
+{q:"الفرق بين <b> و <strong>:",tp:"mcq",df:"hard",ci:1,op:["مفيش فرق","<b> للتنسيق فقط، <strong> ليه معنى دلالي","<strong> أقدم","<b> أفضل لـ SEO"],ex:"<b> مجرد تنسيق. <strong> ليه معنى دلالي (النص مهم)."},
+{q:"<figure> مناسب لـ:",tp:"mcq",df:"medium",ci:1,op:["النصوص فقط","صورة أو فيديو أو كود مع وصف اختياري","الأزرار","الروابط"],ex:"<figure> لمحتوى وسائط مع وصف اختياري بـ <figcaption>."}
+];
+
+QB[4] = [
+{q:"العنصر الأساسي لبناء جدول في HTML:",tp:"mcq",df:"easy",ci:1,op:["<grid>","<table>","<tabular>","<data>"],ex:"<table> هو العنصر الأساسي لبناء جدول في HTML."},
+{q:"الفرق بين <td> و <th>:",tp:"mcq",df:"easy",ci:1,op:["مفيش فرق","<td> خلية بيانات عادية، <th> خلية عنوان عريضة","<th> بيانات، <td> عنوان","<td> للصفوف، <th> للأعمدة"],ex:"<td> لخلية عادية. <th> لخلية عنوان — عريضة وفي النص."},
+{q:"colspan=\"2\" وظيفته:",tp:"mcq",df:"medium",ci:1,op:["الخلية تمتد على صفين","الخلية تمتد أفقياً على عمودين","الخلية تتكرر مرتين","الخلية فيها عمودين"],ex:"colspan=\"2\" بيخلي الخلية تمتد أفقياً على عمودين."},
+{q:"ليه <label> مهم جداً في الـ Forms؟",tp:"mcq",df:"medium",ci:1,op:["بيخلي الـ form أسرع","مهم لـ Accessibility ولما تضغط عليه الحقل بيتفعل","بيغير لون الحقل","اختياري ومش مهم"],ex:"<label> مهم لـ Accessibility ولما تضغط عليه الحقل بيتفعل."},
+{q:"إزاي تربط <label> بـ <input>؟",tp:"mcq",df:"medium",ci:1,op:["name في label = name في input","for في label = id في input","link في label = link في input","لازم يكونوا جوه بعض"],ex:"صفة for في <label> لازم تطابق صفة id في <input>."},
+{q:"أي type من الـ input بيخفي النص اللي المستخدم بيكتبه؟",tp:"mcq",df:"easy",ci:2,op:["type=\"hidden\"","type=\"secret\"","type=\"password\"","type=\"private\""],ex:"type=\"password\" بيخفي النص (بيظهر نقاط بدلاً من الحروف)."},
+{q:"الفرق بين radio و checkbox:",tp:"mcq",df:"easy",ci:1,op:["مفيش فرق","radio لاختيار واحد، checkbox لاختيارات متعددة","radio متعدد، checkbox واحد","radio للنصوص، checkbox للأرقام"],ex:"radio لاختيار واحد من مجموعة. checkboxes لاختيارات متعددة."},
+{q:"ليه الـ radio buttons لازم يكونوا بنفس الـ name؟",tp:"mcq",df:"medium",ci:1,op:["عشان يظهروا في سطر واحد","عشان المتصفح يعرف إنهم مجموعة والمستخدم يختار واحد بس","عشان الـ form يشتغل","مش لازم"],ex:"لازم نفس الـ name عشان المتصفح يعرف إنهم مجموعة واحدة."},
+{q:"صفة required في الـ input وظيفتها:",tp:"mcq",df:"easy",ci:1,op:["تكبير الحقل","خلّي الحقل إلزامي — الـ form مش هيتبعت لو فاضي","تغيير لون الحقل","خلّي الحقل للقراءة فقط"],ex:"required بتخلي الحقل إلزامي."},
+{q:"العنصر المستخدم لتجميع حقول الـ Form مع عنوان:",tp:"mcq",df:"medium",ci:1,op:["<group> + <title>","<fieldset> + <legend>","<div> + <h3>","<section> + <header>"],ex:"<fieldset> بيجمع حقول مرتبطة، و <legend> بيدي عنوان للمجموعة."},
+{q:"العنصر <select> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["حقل نص عادي","قائمة منسدلة (dropdown) لاختيار قيمة","زر","صورة"],ex:"<select> بيعمل قائمة منسدلة فيها <option> للاختيارات."},
+{q:"العنصر <textarea> مناسب لـ:",tp:"mcq",df:"easy",ci:1,op:["كلمة السر","نص طويل متعدد الأسطر زي الرسائل","رقم التليفون","التاريخ"],ex:"<textarea> لنصوص طويلة متعددة الأسطر."},
+{q:"type=\"email\" بيتأكد من:",tp:"mcq",df:"medium",ci:1,op:["إن الحقل مافيوش أرقام","إن صيغة الإيميل صحيحة (فيه @ و domain)","إن الإيميل موجود فعلاً","طول الإيميل"],ex:"type=\"email\" بيتأكد إن صيغة الإيميل صحيحة."},
+{q:"التحقق من البيانات في الـ HTML كافي لوحده للأمان.",tp:"tf",df:"hard",ci:1,op:["صح","غلط"],ex:"غلط! التحقق في الـ HTML مش كافي — لازم تحقق في الـ Backend كمان."},
+{q:"صفة pattern في الـ input وظيفتها:",tp:"mcq",df:"hard",ci:1,op:["تغيير شكل الحقل","تحديد نمط البيانات المسموح بيها باستخدام Regex","إضافة صورة للحقل","تغيير اللون"],ex:"pattern بتحدد نمط البيانات باستخدام Regular Expression."},
+{q:"العنصر <thead> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["محتوى الجدول","رأس الجدول اللي فيه العناوين","تذييل الجدول","حدود الجدول"],ex:"<thead> لرأس الجدول — بيحتوي على صفوف العناوين."},
+{q:"العنصر <tbody> وظيفته:",tp:"mcq",df:"easy",ci:1,op:["العناوين","محتوى الجدول الرئيسي (البيانات الفعلية)","التذييل","الأعمدة"],ex:"<tbody> لمحتوى الجدول الرئيسي."},
+{q:"العنصر <tfoot> وظيفته:",tp:"mcq",df:"medium",ci:2,op:["العناوين","البيانات","ملخص أو إجماليات الجدول","الألوان"],ex:"<tfoot> لتذييل الجدول — عادةً فيه الإجماليات."},
+{q:"العنصر <caption> في الجدول وظيفته:",tp:"mcq",df:"medium",ci:0,op:["عنوان وصفي للجدول (مهم لـ Accessibility)","لون الجدول","حجم الجدول","حدود الجدول"],ex:"<caption> عنوان وصفي للجدول. مهم جداً لـ Accessibility."},
+{q:"rowspan=\"2\" وظيفته:",tp:"mcq",df:"medium",ci:1,op:["الخلية تمتد أفقياً على عمودين","الخلية تمتد رأسياً على صفين","الخلية تتكرر مرتين","الخلية مخفية"],ex:"rowspan=\"2\" بيخلي الخلية تمتد رأسياً على صفين."}
+];
+
+QB[5] = [
+{q:"العنصر المستخدم لتشغيل ملفات الصوت في الصفحة:",tp:"mcq",df:"easy",ci:2,op:["<sound>","<music>","<audio>","<mp3>"],ex:"<audio> هو العنصر المستخدم لتشغيل ملفات الصوت في HTML."},
+{q:"صفة controls في عنصر الصوت أو الفيديو وظيفتها:",tp:"mcq",df:"easy",ci:1,op:["إخفاء المشغل","إظهار أزرار التشغيل والإيقاف والتحكم في الصوت","تشغيل تلقائي","كتم الصوت"],ex:"controls بتظهر أزرار التحكم: play, pause, volume."},
+{q:"صفة poster في عنصر <video> وظيفتها:",tp:"mcq",df:"medium",ci:1,op:["تحديد حجم الفيديو","صورة تظهر قبل ما المستخدم يضغط تشغيل","إضافة ترجمة","تحديد مدة الفيديو"],ex:"poster صورة الغلاف — بتظهر قبل ما المستخدم يضغط تشغيل."},
+{q:"العنصر المستخدم لتضمين محتوى من موقع تاني:",tp:"mcq",df:"easy",ci:2,op:["<embed>","<include>","<iframe>","<external>"],ex:"<iframe> بيستخدم لتضمين محتوى من موقع تاني زي فيديوهات يوتيوب."},
+{q:"ليه meta viewport مهم جداً؟",tp:"mcq",df:"medium",ci:0,op:["بيخلي الصفحة تتكيف مع حجم شاشة الموبايل","بيخلي الصفحة أسرع","بيحسن الـ SEO","بيضيف أيقونة للموقع"],ex:"viewport meta tag بيخلي الصفحة تتكيف مع حجم شاشة الجهاز."},
+{q:"أول عنصر لازم يكون جوه <head>:",tp:"mcq",df:"medium",ci:1,op:["<title>","<meta charset=\"UTF-8\">","<link> للـ CSS","<meta name=\"viewport\">"],ex:"<meta charset=\"UTF-8\"> لازم يكون أول عنصر في <head>."},
+{q:"ما هو الـ Favicon؟",tp:"mcq",df:"easy",ci:1,op:["صورة الخلفية","أيقونة صغيرة بتظهر في تاب المتصفح","شعار الموقع الكبير","صورة في نتائج البحث"],ex:"Favicon الأيقونة الصغيرة اللي بتظهر في تاب المتصفح."},
+{q:"الـ Open Graph Tags وظيفتها:",tp:"mcq",df:"medium",ci:1,op:["تحسين الـ SEO فقط","التحكم في شكل الصفحة لما حد يشاركها على السوشيال ميديا","إضافة صور للموقع","تحسين السرعة"],ex:"Open Graph Tags بتتحكم في شكل الصفحة لما حد يشاركها."},
+{q:"صفة autoplay مش بتشتغل في أغلب المتصفحات إلا لو:",tp:"mcq",df:"medium",ci:1,op:["المتصفح بيدعمها","كان الصوت أو الفيديو مكتوم (muted)","كان الملف صغير","كانت الصفحة سريعة"],ex:"المتصفحات الحديثة بتمنع التشغيل التلقائي إلا لو muted."},
+{q:"الطول المثالي لـ meta description:",tp:"mcq",df:"medium",ci:2,op:["10-20 حرف","50-60 حرف","150-160 حرف","300-400 حرف"],ex:"150-160 حرف هو المثالي — أطول من كده جوجل هيقتطعه."},
+{q:"العنصر <track> في الفيديو وظيفته:",tp:"mcq",df:"hard",ci:1,op:["تتبع الفيديو","إضافة ترجمة (Subtitles) للفيديو","تسريع التحميل","تغيير الجودة"],ex:"<track> بيضيف ملفات ترجمة للفيديو — مهم لـ Accessibility."},
+{q:"صفة loading=\"lazy\" في الـ iframe وظيفتها:",tp:"mcq",df:"hard",ci:1,op:["تحميل الـ iframe بسرعة","تأخير تحميل الـ iframe لحد ما المستخدم يوصله","إيقاف التحميل","تحميل بدون إنترنت"],ex:"loading=\"lazy\" بيخلي الـ iframe يتحمل بس لما المستخدم يوصله."},
+{q:"صفة sandbox في الـ iframe وظيفتها:",tp:"mcq",df:"hard",ci:1,op:["إضافة رمل للصفحة","تحديد صلاحيات أمان للمحتوى المضمن","تغيير اللون","إخفاء الـ iframe"],ex:"sandbox بتحدد صلاحيات أمان للـ iframe."},
+{q:"صيغ الصوت المدعومة في عنصر <audio>:",tp:"mcq",df:"easy",ci:0,op:["MP3, WAV, OGG","DOC, PDF","JPG, PNG","EXE, ZIP"],ex:"صيغ الصوت المدعومة: MP3, WAV, OGG."},
+{q:"صيغ الفيديو المدعومة في عنصر <video>:",tp:"mcq",df:"easy",ci:0,op:["MP4, WebM, OGG","DOC, PDF","MP3, WAV","JPG, PNG"],ex:"صيغ الفيديو المدعومة: MP4, WebM, OGG."},
+{q:"الـ meta description بيظهر في:",tp:"mcq",df:"medium",ci:1,op:["الصفحة نفسها","نتائج محركات البحث تحت العنوان","تاب المتصفح","أيقونة الموقع"],ex:"meta description بيظهر في نتائج محركات البحث."},
+{q:"الطول المثالي لعنوان الصفحة (title):",tp:"mcq",df:"medium",ci:2,op:["10-20 حرف","30-40 حرف","50-60 حرف","100+ حرف"],ex:"50-60 حرف هو المثالي لعنوان الصفحة."},
+{q:"الـ keywords meta tag لسه مهمة لجوجل في ترتيب المواقع.",tp:"tf",df:"medium",ci:1,op:["صح","غلط"],ex:"غلط! جوجل مش بتاخد keywords في الاعتبار من زمان."},
+{q:"الـ robots meta tag وظيفته:",tp:"mcq",df:"hard",ci:1,op:["إضافة روبوت للموقع","التحكم في هل محركات البحث تفهرس الصفحة ولا لأ","تغيير الألوان","تسريع الموقع"],ex:"robots meta tag بتتحكم في الفهرسة: index أو noindex."},
+{q:"أفضل طريقة لإضافة فيديو لموقعك:",tp:"mcq",df:"hard",ci:1,op:["رفع ملف الفيديو مباشرة على السيرفر","رفع الفيديو على يوتيوب وتضمينه بـ <iframe>","استخدام <video> دايماً","عدم إضافة فيديوهات"],ex:"الأفضل رفع الفيديو على يوتيوب وتضمينه بـ iframe."}
+];
+
+QB[6] = [
+{q:"ما معنى CSS؟",tp:"mcq",df:"easy",ci:1,op:["Computer Style Sheets","Cascading Style Sheets","Creative Style System","Colorful Style Sheets"],ex:"CSS = Cascading Style Sheets = أوراق الأنماط المتتالية."},
+{q:"أفضل طريقة لإضافة CSS في مشروع حقيقي:",tp:"mcq",df:"easy",ci:2,op:["Inline CSS (في صفة style)","Internal CSS (في <style>)","External CSS (ملف .css منفصل)","كلهم بنفس الكفاءة"],ex:"External CSS هو الأفضل: فصل الاهتمامات، إعادة استخدام، صيانة سهلة."},
+{q:"الرمز المستخدم لاختيار الـ Class في CSS:",tp:"mcq",df:"easy",ci:1,op:["# (hash)",". (نقطة)","* (نجمة)","@ (آت)"],ex:"الـ Class Selector بيستخدم النقطة (.). مثال: .button { }"},
+{q:"الفرق بين الـ Class والـ ID:",tp:"mcq",df:"easy",ci:2,op:["مفيش فرق","الـ Class فريد والـ ID يتكرر","الـ Class يتكرر والـ ID فريد","الـ Class للنصوص والـ ID للألوان"],ex:"الـ Class ممكن يتكرر. الـ ID فريد — عنصر واحد بس."},
+{q:"أي selector عنده أعلى Specificity؟",tp:"mcq",df:"medium",ci:2,op:["Element selector (زي p)","Class selector (زي .btn)","ID selector (زي #header)","Universal selector (*)"],ex:"الترتيب: Inline > ID > Class > Element > Universal."},
+{q:"الشكل الصحيح لكتابة لون بصيغة HEX:",tp:"mcq",df:"easy",ci:1,op:["#GGHHII","#RRGGBB (زي #4A7C59)","RGB(255,255,255)","color: #12345"],ex:"HEX: # + 6 أرقام أو حروف من 0-9 و A-F."},
+{q:"صيغة RGBA بتضيف إيه مقارنة بـ RGB؟",tp:"mcq",df:"medium",ci:0,op:["الشفافية (Alpha)","تغيير حجم اللون","إضافة حركة","تغيير الاتجاه"],ex:"RGBA = RGB + Alpha (شفافية من 0 لـ 1)."},
+{q:"background-size: cover وظيفته:",tp:"mcq",df:"medium",ci:1,op:["إظهار الصورة كاملة","تغطية العنصر كله حتى لو اتقص جزء","حجم الصورة الأصلي","تمديد الصورة"],ex:"cover بيخلي الصورة تغطي العنصر كله."},
+{q:"وحدة rem بتقيس نسبة من:",tp:"mcq",df:"medium",ci:1,op:["حجم خط العنصر الأب","حجم خط عنصر الجذر (html)","وحدة ثابتة زي الـ px","حجم الشاشة"],ex:"rem = نسبة من حجم خط عنصر <html>. الافتراضي 16px."},
+{q:"أي وحدة من دول بتتغير بتغير حجم الشاشة؟",tp:"mcq",df:"medium",ci:2,op:["px","rem","vw (viewport width)","em"],ex:"vw = 1% من عرض الشاشة. بتتغير تلقائياً."},
+{q:"الـ Selector اللي بيختار عنصر جوه عنصر تاني:",tp:"mcq",df:"medium",ci:1,op:["Grouping selector (فاصلة)","Descendant selector (مسافة)","Universal selector (*)","Element selector"],ex:"Descendant Selector: nav a = كل <a> اللي جوه <nav>."},
+{q:"استخدام !important في CSS مستحسن دايماً.",tp:"tf",df:"medium",ci:1,op:["صح","غلط"],ex:"غلط! !important بيكسر الـ cascade الطبيعي."},
+{q:"الـ Grouping Selector (فاصلة) وظيفته:",tp:"mcq",df:"easy",ci:1,op:["اختيار عنصر واحد","تطبيق نفس التنسيق على أكتر من عنصر مرة واحدة","إخفاء العناصر","مسح العناصر"],ex:"الـ Grouping بفاصلة بينسق أكتر من عنصر مرة واحدة."},
+{q:"صيغة HSL اختصار لـ:",tp:"mcq",df:"hard",ci:1,op:["High Saturation Light","Hue + Saturation + Lightness","HTML Style Language","Hex Style Light"],ex:"HSL = Hue (اللون) + Saturation (التشبع) + Lightness (الإضاءة)."},
+{q:"background-repeat: no-repeat وظيفته:",tp:"mcq",df:"easy",ci:1,op:["تكرار الصورة","إظهار الصورة مرة واحدة بدون تكرار","إخفاء الصورة","تكبير الصورة"],ex:"no-repeat بيمنع تكرار الصورة."},
+{q:"Inline CSS مش مستحسن في المشاريع لأن:",tp:"mcq",df:"medium",ci:1,op:["مش بيشتغل","صعب الصيانة ومفيش إعادة استخدام","أبطأ من الباقي","مش بيدعم الألوان"],ex:"Inline CSS صعب الصيانة ومفيش إعادة استخدام."},
+{q:"قيمة الـ Specificity للـ Universal Selector (*) هي:",tp:"mcq",df:"hard",ci:3,op:["1000","100","10","0"],ex:"الـ Universal Selector (*) عنده أقل Specificity = 0."},
+{q:"أنسب طريقة لإضافة CSS لصفحة واحدة بسيطة:",tp:"mcq",df:"easy",ci:1,op:["Inline","Internal (<style> في الـ head)","External","مش محتاج CSS"],ex:"Internal CSS مناسب لصفحة واحدة بسيطة."},
+{q:"background-position: center وظيفته:",tp:"mcq",df:"easy",ci:1,op:["تكبير الصورة","توسيط صورة الخلفية في العنصر","تكرار الصورة","إخفاء الصورة"],ex:"background-position: center بيوسط صورة الخلفية."},
+{q:"لو عنصر عليه تنسيق من Class ومن ID، أي واحد هيتم تطبيقه؟",tp:"mcq",df:"hard",ci:1,op:["تنسيق الـ Class","تنسيق الـ ID (لأن Specificity أعلى)","الاتنين معاً","مش هيشتغل أي تنسيق"],ex:"الـ ID عنده Specificity أعلى من الـ Class."}
+];
+
+QB[7] = [
+{q:"الخاصية اللي بتحدد نوع الخط في CSS:",tp:"mcq",df:"easy",ci:1,op:["font-style","font-family","font-weight","text-font"],ex:"font-family بتحدد نوع الخط."},
+{q:"القيمة المثالية لـ line-height لنصوص الفقرات:",tp:"mcq",df:"medium",ci:2,op:["0.5","1.0","1.5 - 1.8","3.0"],ex:"1.5 - 1.8 هو المثالي للنصوص الطويلة."},
+{q:"الفرق بين الـ padding والـ margin:",tp:"mcq",df:"easy",ci:2,op:["مفيش فرق","الـ padding الخارجية والـ margin الداخلية","الـ padding الداخلية والـ margin الخارجية","الـ padding للخطوط والـ margin للألوان"],ex:"padding = المسافة الداخلية. margin = المسافة الخارجية."},
+{q:"أفضل قيمة لـ box-sizing:",tp:"mcq",df:"medium",ci:1,op:["content-box","border-box","padding-box","margin-box"],ex:"border-box أفضل: width = المحتوى + padding + border."},
+{q:"الخاصية اللي بتحول كل الحروف لكبيرة:",tp:"mcq",df:"easy",ci:2,op:["text-style: upper","font-transform: uppercase","text-transform: uppercase","text-case: upper"],ex:"text-transform: uppercase بيحول كل الحروف لكبيرة."},
+{q:"إزاي توسط عنصر أفقياً باستخدام الـ margin؟",tp:"mcq",df:"medium",ci:1,op:["margin: center","margin: 0 auto","margin: auto 0","margin: middle"],ex:"margin: 0 auto بتوسط العنصر أفقياً. لازم عرض محدد."},
+{q:"ما هو الـ Margin Collapse؟",tp:"mcq",df:"hard",ci:1,op:["المسافة = مجموع الـ margins","المسافة بين عنصرين متجاورين رأسياً = الـ margin الأكبر","إزالة كل الـ margins","إضافة margins تلقائياً"],ex:"المسافة بين عنصرين فوق بعض = الـ margin الأكبر مش المجموع."},
+{q:"border-radius: 50% بيعمل:",tp:"mcq",df:"easy",ci:2,op:["زوايا حادة","زوايا دائرية خفيفة","شكل دائري كامل","إزالة الحدود"],ex:"border-radius: 50% بيخلي العنصر دائرة كاملة."},
+{q:"أفضل وحدة لكتابة حجم الخط:",tp:"mcq",df:"medium",ci:2,op:["px","em","rem","%"],ex:"rem أفضل: متجاوبة وثابتة (1rem = 16px دايماً)."},
+{q:"الـ Global Reset الصحيح:",tp:"mcq",df:"easy",ci:1,op:["* { margin: 0; padding: 0; }","* { margin: 0; padding: 0; box-sizing: border-box; }","body { margin: 0; }","* { box-sizing: content-box; }"],ex:"الـ Global Reset المثالي بيشمل الـ box-sizing."},
+{q:"letter-spacing: 2px وظيفته:",tp:"mcq",df:"easy",ci:1,op:["زيادة المسافة بين السطور","زيادة المسافة بين الحروف بمقدار 2 بكسل","تكبير حجم الخط","تصغير حجم الخط"],ex:"letter-spacing بيحدد المسافة بين الحروف."},
+{q:"text-decoration: none وظيفته:",tp:"mcq",df:"easy",ci:1,op:["إضافة خط تحت النص","إزالة الخط اللي تحت الروابط","مسح النص","تغيير لون النص"],ex:"text-decoration: none بيزيل الخط اللي تحت الروابط."},
+{q:"font-weight: 700 يعني:",tp:"mcq",df:"easy",ci:2,op:["خط خفيف","خط عادي","خط عريض (bold)","خط عريض جداً"],ex:"font-weight: 700 = bold."},
+{q:"لما بنستخدم content-box، الـ width بيحسب:",tp:"mcq",df:"hard",ci:0,op:["المحتوى فقط","المحتوى + الـ padding","المحتوى + الـ padding + الـ border","المحتوى + كل حاجة"],ex:"content-box: width = المحتوى فقط."},
+{q:"لما بنستخدم border-box، الـ width بيحسب:",tp:"mcq",df:"hard",ci:1,op:["المحتوى فقط","المحتوى + الـ padding + الـ border","المحتوى + الـ margin","المحتوى + كل حاجة"],ex:"border-box: width = المحتوى + الـ padding + الـ border."},
+{q:"الخطوط من Google Fonts محتاجة إنترنت دايماً.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! أو ممكن تنزل الخط وتضيفه محلياً."},
+{q:"display=swap في رابط Google Fonts وظيفته:",tp:"mcq",df:"hard",ci:1,op:["تبطيء التحميل","إظهار النص بخط بديل لحد ما الخط المطلوب يتحمل","إخفاء النص","تغيير الخط"],ex:"display=swap بيحسن الأداء."},
+{q:"padding: 10px 20px 30px 40px معناها بالترتيب:",tp:"mcq",df:"medium",ci:1,op:["كل الجهات بنفس المسافة","فوق 10، يمين 20، تحت 30، شمال 40","كل الجهات 10","خطأ في الكتابة"],ex:"4 قيم = فوق، يمين، تحت، شمال (اتجاه عقارب الساعة)."},
+{q:"margin: 20px 40px معناها:",tp:"mcq",df:"medium",ci:1,op:["كل الجهات 20","فوق وتحت 20، يمين وشمال 40","خطأ","يمين 20 وشمال 40"],ex:"قيمتين: الأولى = فوق وتحت. الثانية = يمين وشمال."},
+{q:"text-align: justify وظيفته:",tp:"mcq",df:"medium",ci:3,op:["محاذاة لليسار","محاذاة للوسط","محاذاة لليمين","توزيع النص عشان يملأ عرض السطر"],ex:"justify بيوزع النص عشان يملأ عرض السطر."}
+];
+
+QB[8] = [
+{q:"القيمة اللي بتخلي العنصر يبدأ في سطر جديد ياخد العرض كله:",tp:"mcq",df:"easy",ci:2,op:["inline","inline-block","block","flex"],ex:"block: بيبدأ في سطر جديد وبيأخد العرض كله."},
+{q:"الفرق بين display: none و visibility: hidden:",tp:"mcq",df:"medium",ci:1,op:["مفيش فرق","none بيخفي العنصر ومكانه بيروح، hidden بيخفيه بس المكان بيفضل","hidden بيخفي العنصر تماماً","الاتنين بيحذفوا العنصر"],ex:"none = اختفاء تام. hidden = مش ظاهر بس المكان محجوز."},
+{q:"أي قيمة بتقبل عرض وارتفاع وبتظهر في نفس السطر؟",tp:"mcq",df:"medium",ci:2,op:["block","inline","inline-block","none"],ex:"inline-block = أفضل حاجة: في نفس السطر وبيقبل عرض وارتفاع."},
+{q:"القيمة الافتراضية لـ position:",tp:"mcq",df:"easy",ci:2,op:["relative","absolute","static","fixed"],ex:"static هي الافتراضية."},
+{q:"position: absolute بيتحرك بالنسبة لـ:",tp:"mcq",df:"medium",ci:2,op:["مكانه الأصلي","الشاشة كلها","أقرب عنصر أب عنده position مش static","العنصر اللي قبله"],ex:"absolute بيتحرك بالنسبة لأقرب أب عنده position مش static."},
+{q:"عشان الـ absolute يشتغل صح جوه عنصر، العنصر ده لازم يكون:",tp:"mcq",df:"medium",ci:1,op:["position: static","position: relative","display: block","عنده عرض محدد"],ex:"الأب لازم يكون position: relative."},
+{q:"أي نوع بيتحرك مع السكرول لحد ما يوصل مكان معين وبعدها يثبت؟",tp:"mcq",df:"medium",ci:2,op:["fixed","absolute","sticky","relative"],ex:"sticky بيتحرك مع السكرول وبعدها بيثبت."},
+{q:"الـ z-index بيشتغل مع:",tp:"mcq",df:"medium",ci:2,op:["position: static بس","أي عنصر","العناصر اللي عندها position مش static","position: fixed بس"],ex:"z-index بيشتغل بس مع العناصر اللي عندها position مش static."},
+{q:"overflow: hidden وظيفته:",tp:"mcq",df:"easy",ci:1,op:["إظهار شريط تمرير","إخفاء أي محتوى زايد عن حجم العنصر","تكبير العنصر","حذف العنصر"],ex:"overflow: hidden بيخفي المحتوى الزايد."},
+{q:"عشان تعمل شريط تنقل ثابت في أعلى الصفحة:",tp:"mcq",df:"easy",ci:3,op:["position: static","position: relative","position: absolute","position: fixed أو sticky"],ex:"fixed أو sticky بيثبتوا الشريط."},
+{q:"العناصر اللي عندها display: inline بتقبل تحديد عرض وارتفاع.",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! العناصر الـ inline مش بتقبل عرض أو ارتفاع."},
+{q:"position: relative بيحرك العنصر بالنسبة لـ:",tp:"mcq",df:"medium",ci:2,op:["الشاشة","العنصر الأب","مكانه الأصلي","العنصر اللي قبله"],ex:"relative بيحرك العنصر بالنسبة لمكانه الأصلي."},
+{q:"position: fixed بيتحرك بالنسبة لـ:",tp:"mcq",df:"medium",ci:2,op:["العنصر الأب","مكانه الأصلي","الشاشة (Viewport)","العنصر اللي قبله"],ex:"fixed بالنسبة للشاشة — مش بيتحرك مع السكرول."},
+{q:"استخدام أرقام كبيرة جداً للـ z-index أفضل من الصغيرة.",tp:"tf",df:"hard",ci:1,op:["صح","غلط"],ex:"غلط! الأرقام الكبيرة بتعمل فوضى. نظم بأرقام صغيرة."},
+{q:"الخصائص top و right و bottom و left بتشتغل مع:",tp:"mcq",df:"medium",ci:1,op:["position: static بس","كل أنواع الـ position ما عدا static","relative بس","absolute بس"],ex:"بتشتغل مع الـ relative والـ absolute والـ fixed والـ sticky."},
+{q:"display: inline-block مناسب لـ:",tp:"mcq",df:"medium",ci:1,op:["الـ Layout الكامل","عناصر صغيرة زي أزرار التنقل","الأقسام الكبيرة","الصفحة كلها"],ex:"inline-block مناسب لعناصر صغيرة زي أزرار التنقل."},
+{q:"position: absolute بيطلع العنصر من:",tp:"mcq",df:"hard",ci:2,op:["الشاشة","العنصر الأب","الـ Document Flow","العنصر اللي قبله"],ex:"absolute بيطلع العنصر من الـ Document Flow."},
+{q:"عشان الـ sticky يشتغل لازم يكون فيه:",tp:"mcq",df:"hard",ci:1,op:["JavaScript","واحدة من الخصائص: top أو bottom أو left أو right محددة","الأب يكون عنده position: relative","display: block"],ex:"sticky لازم يكون فيه واحدة من الخصائص دي محددة."},
+{q:"overflow: auto وظيفته:",tp:"mcq",df:"medium",ci:1,op:["إظهار شريط تمرير دايماً","إظهار شريط تمرير بس لما المحتوى يزيد","إخفاء المحتوى","تكبير العنصر"],ex:"overflow: auto بيظهر شريط تمرير بس لما المحتوى يزيد."},
+{q:"margin: 0 auto بيوسط العنصر:",tp:"mcq",df:"easy",ci:1,op:["رأسياً","أفقياً","الاتنين مع بعض","مش بيوسط"],ex:"margin: 0 auto بيوسط العنصر أفقياً."}
+];
+
+QB[9] = [
+{q:"القيمة اللي بتحول العنصر لـ Flex Container:",tp:"mcq",df:"easy",ci:1,op:["display: flexbox","display: flex","display: flexible","flex: container"],ex:"display: flex بيحول العنصر لـ Flex Container."},
+{q:"الاتجاه الافتراضي لـ flex-direction:",tp:"mcq",df:"easy",ci:1,op:["column","row","horizontal","vertical"],ex:"row هو الافتراضي — العناصر بتترتب أفقياً."},
+{q:"الخاصية اللي بتوزع العناصر على الـ Main Axis:",tp:"mcq",df:"medium",ci:1,op:["align-items","justify-content","flex-direction","flex-wrap"],ex:"justify-content بتوزع العناصر على الـ Main Axis."},
+{q:"القيمة اللي بتوسط العناصر على الـ Main Axis:",tp:"mcq",df:"easy",ci:1,op:["justify-content: middle","justify-content: center","align-items: center","justify-content: central"],ex:"justify-content: center بتوسط العناصر."},
+{q:"أول عنصر في البداية وآخر عنصر في النهاية والباقي متوزعين:",tp:"mcq",df:"medium",ci:2,op:["space-around","space-evenly","space-between","distribute"],ex:"space-between: أول عنصر في البداية وآخر في النهاية."},
+{q:"الخاصية اللي بتضيف مسافة بين العناصر في الـ Flexbox:",tp:"mcq",df:"easy",ci:2,op:["margin","padding","gap","spacing"],ex:"gap بتضيف مسافة بين العناصر مباشرة."},
+{q:"الخاصية المختصرة اللي بتجمع الـ flex-grow والـ flex-shrink والـ flex-basis:",tp:"mcq",df:"medium",ci:1,op:["flex-size","flex","flex-all","flex-properties"],ex:"الخاصية بتاعة الـ flex بتجمع التلاتة."},
+{q:"القيمة اللي بتخلي العناصر تنزل لسطر جديد:",tp:"mcq",df:"medium",ci:1,op:["flex-wrap: break","flex-wrap: wrap","flex-wrap: new-line","flex-flow: wrap"],ex:"flex-wrap: wrap بتخلي العناصر تنزل لسطر جديد."},
+{q:"الخاصية اللي بتغير ترتيب العناصر بصرياً:",tp:"mcq",df:"medium",ci:2,op:["position","z-index","order","sequence"],ex:"order بتغير ترتيب العناصر بصرياً."},
+{q:"إزاي توسط عنصر أفقياً ورأسياً بالـ Flexbox؟",tp:"mcq",df:"medium",ci:2,op:["justify-content: center بس","align-items: center بس","display: flex + justify-content: center + align-items: center","margin: auto"],ex:"لازم الـ 3 مع بعض."},
+{q:"الـ Flexbox هو نظام Layout ثنائي الأبعاد (2D).",tp:"tf",df:"easy",ci:1,op:["صح","غلط"],ex:"غلط! الـ Flexbox أحادي الأبعاد. الـ Grid هو الثنائي الأبعاد."},
+{q:"align-items: stretch وظيفته:",tp:"mcq",df:"medium",ci:1,op:["توسيط العناصر","تمديد العناصر عشان تملأ ارتفاع الـ Container","إخفاء العناصر","تصغير العناصر"],ex:"stretch بتخلي العناصر تملأ ارتفاع الـ Container."},
+{q:"align-self وظيفته:",tp:"mcq",df:"medium",ci:1,op:["تغيير كل العناصر","التحكم في محاذاة عنصر واحد بس","إخفاء العنصر","مسح العنصر"],ex:"align-self بتتحكم في عنصر واحد بس."},
+{q:"flex: 1 معناها:",tp:"mcq",df:"medium",ci:1,op:["عرض العنصر 1 بكسل","العنصر بيكبر عشان ياخد المساحة الفاضية","ترتيب العنصر رقم 1","ارتفاع العنصر 1"],ex:"flex: 1 العنصر بيكبر عشان ياخد المساحة المتاحة."},
+{q:"الخصائص بتاعة الـ Flexbox بتأثر على الأبناء المباشرين بس.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! الخصائص بتأثر بس على الأبناء المباشرين."},
+{q:"justify-content: space-around وظيفته:",tp:"mcq",df:"hard",ci:1,op:["مسافات متساوية بين العناصر بس","مسافة متساوية حول كل عنصر","العناصر في الأطراف","العناصر في الوسط"],ex:"space-around: كل عنصر عنده مسافة متساوية من الجهتين."},
+{q:"لما flex-direction: column، الـ Main Axis بيبقى:",tp:"mcq",df:"hard",ci:1,op:["أفقي","رأسي (من فوق لتحت)","مائل","مش بيتغير"],ex:"في الـ column: الـ Main Axis رأسي."},
+{q:"الخاصية المختصرة اللي بتجمع الـ flex-direction والـ flex-wrap:",tp:"mcq",df:"hard",ci:1,op:["flex + gap","flex-flow","flex-grow + flex-shrink","justify + align"],ex:"flex-flow بتجمع الاتنين."},
+{q:"justify-content: space-evenly وظيفته:",tp:"mcq",df:"hard",ci:1,op:["مسافات متساوية بين العناصر بس","مسافات متساوية تماماً بين كل العناصر والحواف","العناصر في الأطراف","العناصر في الوسط"],ex:"space-evenly: المسافة متساوية تماماً."},
+{q:"الـ Flexbox بيحل مشاكل:",tp:"mcq",df:"medium",ci:1,op:["الألوان والخطوط","ترتيب العناصر في صف أو عمود بسهولة","حجم الصور","سرعة الموقع"],ex:"الـ Flexbox بيحل مشاكل ترتيب العناصر في اتجاه واحد."}
+];
+
+QB[10] = [
+{q:"القيمة اللي بتحول العنصر لـ Grid Container:",tp:"mcq",df:"easy",ci:1,op:["display: gridbox","display: grid","display: table","grid: container"],ex:"display: grid بيحول العنصر لـ Grid Container."},
+{q:"وحدة fr في الـ Grid معناها:",tp:"mcq",df:"medium",ci:1,op:["نسبة ثابتة","جزء من المساحة الفاضية (fraction)","معدل الإطارات","صف كامل"],ex:"fr = fraction = جزء من المساحة الفاضية."},
+{q:"إزاي تعمل 3 أعمدة متساوية؟",tp:"mcq",df:"easy",ci:1,op:["grid-template-columns: 3fr;","grid-template-columns: 1fr 1fr 1fr; أو repeat(3, 1fr)","grid-columns: 3;","columns: 3;"],ex:"الطريقتين صح."},
+{q:"repeat(3, 1fr) معناها:",tp:"mcq",df:"easy",ci:1,op:["تكرار العنصر 3 مرات","عمل 3 أعمدة متساوية","عمل 3 صفوف","تكرار المسافة"],ex:"repeat(3, 1fr) = 3 أعمدة متساوية."},
+{q:"الخاصية اللي بتسمي المناطق وترتبها بشكل بصري:",tp:"mcq",df:"medium",ci:1,op:["grid-template-columns","grid-template-areas","grid-template-rows","grid-auto-flow"],ex:"grid-template-areas بتسمي المناطق وترتبها."},
+{q:"إزاي تخلي عنصر يمتد على عمودين؟",tp:"mcq",df:"medium",ci:1,op:["grid-column: 2;","grid-column: span 2; أو من خط 1 لخط 3","column-span: 2;","grid-width: 2;"],ex:"الطريقتين صح."},
+{q:"auto-fit في الـ Grid وظيفته:",tp:"mcq",df:"medium",ci:1,op:["ملء الفراغات","عمل أكبر عدد ممكن من الأعمدة اللي بتتسع","تغيير حجم الخط","إخفاء الأعمدة"],ex:"auto-fit بيعمل أكبر عدد ممكن من الأعمدة."},
+{q:"minmax(200px, 1fr) معناها:",tp:"mcq",df:"hard",ci:0,op:["العمود أقل حاجة 200 بكسل وأكتر حاجة 1fr","العمود حجمه ثابت 200 بكسل","العمود حجمه 1fr بس","إخفاء الأعمدة الأصغر"],ex:"minmax بتحدد أقل وأكبر حجم."},
+{q:"الفرق الرئيسي بين الـ Flexbox والـ Grid:",tp:"mcq",df:"medium",ci:1,op:["مفيش فرق","الـ Flexbox أحادي الأبعاد والـ Grid ثنائي الأبعاد","الـ Flexbox أحدث","الـ Grid أسهل"],ex:"الـ Flexbox بشتغل في اتجاه واحد. الـ Grid في اتجاهين."},
+{q:"أسهل طريقة لتوسيط عنصر بالـ Grid:",tp:"mcq",df:"medium",ci:1,op:["margin: auto;","display: grid + place-items: center + min-height: 100vh;","text-align: center;","align: middle;"],ex:"الطريقة دي بتوسط العنصر أفقياً ورأسياً."},
+{q:"الـ Grid هو نظام Layout ثنائي الأبعاد (2D).",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! الـ Grid بيشتغل في الاتجاهين."},
+{q:"grid-column: 1 / 3 معناها:",tp:"mcq",df:"hard",ci:1,op:["العمود 1 والعمود 3","من خط 1 لخط 3 (يمتد على عمودين)","العمود 1 أو العمود 3","الخط 3 في العمود 1"],ex:"من خط 1 لخط 3 = العنصر بيمتد على عمودين."},
+{q:"الـ gap في الـ Grid بيشتغل:",tp:"mcq",df:"easy",ci:0,op:["زي الـ Flexbox بالظبط","مش بيشتغل في الـ Grid","أفقياً بس","رأسياً بس"],ex:"الـ gap بيشتغل في الـ Grid زي الـ Flexbox."},
+{q:"grid-row: span 2 معناها:",tp:"mcq",df:"medium",ci:0,op:["العنصر يمتد على صفين","العنصر يمتد على عمودين","تكرار الصف","إخفاء الصف"],ex:"span 2 مع الـ row معناه العنصر بيتمتد على صفين."},
+{q:"استخدام auto-fit مع minmax بيعمل Grid متجاوب تلقائياً.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! ده بيخلي الـ Grid يتجاوب تلقائياً."},
+{q:"place-items: center معناها:",tp:"mcq",df:"easy",ci:2,op:["justify-content: center بس","align-items: center بس","الاتنين مع بعض (توسيط أفقي ورأسي)","مش بيوسط"],ex:"place-items بتجمع التوسيط الأفقي والرأسي."},
+{q:"الـ Grid Lines هي:",tp:"mcq",df:"hard",ci:1,op:["حدود مرئية للـ Grid","خطوط وهمية بين الخلايا بتستخدم لتحديد المواقع","ألوان الفواصل","ظلال الفواصل"],ex:"الـ Grid Lines خطوط وهمية لتحديد مكان العنصر."},
+{q:"لو عندك 3 أعمدة، هيكون عندك كام Grid Line؟",tp:"mcq",df:"hard",ci:1,op:["3","4","5","6"],ex:"3 أعمدة = 4 خطوط."},
+{q:"القيم في الـ grid-template-areas بتتكتب بـ:",tp:"mcq",df:"medium",ci:1,op:["أرقام","أسماء بين علامتين تنصيص","ألوان","حروف بس"],ex:"بتكتب أسماء المناطق بين علامات تنصيص."},
+{q:"المطورين المحترفين بيستخدموا:",tp:"mcq",df:"medium",ci:2,op:["الـ Flexbox بس","الـ Grid بس","الـ Flexbox والـ Grid مع بعض حسب الحاجة","ولا حاجة"],ex:"المحترفين بيستخدموا الاتنين حسب الحاجة."}
+];
+
+QB[11] = [
+{q:"ما معنى Responsive Web Design؟",tp:"mcq",df:"easy",ci:1,op:["موقع سريع","موقع بيتكيف مع كل أحجام الشاشات","موقع فيه حركات","موقع فيه صور"],ex:"الـ Responsive يعني الموقع بيتغير شكله حسب حجم الشاشة."},
+{q:"الـ Breakpoint الخاص بالتابلت عادةً:",tp:"mcq",df:"easy",ci:1,op:["320 بكسل","768 بكسل","1440 بكسل","1920 بكسل"],ex:"768 بكسل هو الـ Breakpoint الشائع للتابلت."},
+{q:"الشكل الصحيح لكتابة الـ Media Query:",tp:"mcq",df:"easy",ci:1,op:["@screen (max-width: 768px) { }","@media (max-width: 768px) { }","@responsive (768px) { }","@query max-width: 768px { }"],ex:"@media (الشرط) { القواعد } — ده الشكل الصحيح."},
+{q:"في أسلوب الـ Mobile-first نستخدم:",tp:"mcq",df:"medium",ci:1,op:["max-width","min-width","exact-width","device-width"],ex:"الـ Mobile-first بنبدأ من الموبايل ونبني للأعلى."},
+{q:"وظيفة الدالة clamp():",tp:"mcq",df:"medium",ci:1,op:["تحديد قيمة ثابتة","تحديد قيمة مرنة بين حد أدنى وحد أقصى","إخفاء العنصر","تكبير العنصر"],ex:"clamp بتحدد قيمة مرنة بين حد أدنى وأقصى."},
+{q:"إزاي تخلي الصور متجاوبة؟",tp:"mcq",df:"easy",ci:1,op:["width: 100% بس","max-width: 100% + height: auto","object-fit: cover بس","مش محتاج"],ex:"الخاصيتين دول بيخلوا الصورة متجاوبة."},
+{q:"أفضل وحدة لكتابة حجم خط متجاوب:",tp:"mcq",df:"medium",ci:2,op:["px بس","em بس","rem أو clamp()","pt"],ex:"الـ rem والـ clamp() هما الأفضل."},
+{q:"object-fit: cover وظيفته:",tp:"mcq",df:"medium",ci:1,op:["إظهار الصورة كاملة","ملء المساحة حتى لو اتقص جزء","تكبير الصورة بس","إخفاء الصورة"],ex:"cover بيملا المساحة كلها."},
+{q:"الـ Pattern اللي بيخلي القائمة مخفية في الموبايل:",tp:"mcq",df:"medium",ci:2,op:["Column Drop","Layout Shifter","Off-Canvas (قائمة جانبية مخفية)","الـ Flexbox"],ex:"الـ Off-Canvas بيخلي القائمة مخفية وتظهر بزر."},
+{q:"ليه أسلوب الـ Mobile-first أفضل؟",tp:"mcq",df:"hard",ci:1,op:["أسهل للمبتدئين","أداء أفضل + بتركز على المحتوى + جوجل بيحبه","بيخلي الكود أطول","أصعب في الصيانة"],ex:"الـ Mobile-first بيحسن الأداء والـ SEO."},
+{q:"حوالي 60% من زيارات الإنترنت بتيجي من الموبايل.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! أغلب الزيارات دلوقتي من الموبايل."},
+{q:"الدالة min() بتختار:",tp:"mcq",df:"hard",ci:1,op:["القيمة الأكبر","القيمة الأصغر من القيم المعطاة","إخفاء العنصر","تكبير العنصر"],ex:"min() بتختار القيمة الأصغر."},
+{q:"الدالة max() بتختار:",tp:"mcq",df:"hard",ci:0,op:["القيمة الأكبر من القيم المعطاة","القيمة الأصغر","إخفاء العنصر","تصغير العنصر"],ex:"max() بتختار القيمة الأكبر."},
+{q:"الـ viewport meta tag لازم يكون في كل صفحة Responsive.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! من غيره الـ Responsive مش هيشتغل صح."},
+{q:"الـ Chrome DevTools بيستخدم لـ:",tp:"mcq",df:"easy",ci:1,op:["كتابة الكود","محاكاة أجهزة مختلفة واختبار الموقع عليها","رفع الموقع","تصميم الصور"],ex:"الـ DevTools بيخليك تشوف الموقع على مقاسات مختلفة."},
+{q:"أقل حجم مريح للزر على الموبايل:",tp:"mcq",df:"medium",ci:1,op:["20 بكسل","44 × 44 بكسل","100 بكسل","10 بكسل"],ex:"44 بكسل هو الحد الأدنى المريح للضغط."},
+{q:"أقل حجم مريح لقراءة النص على الموبايل:",tp:"mcq",df:"medium",ci:2,op:["8 بكسل","12 بكسل","16 بكسل","24 بكسل"],ex:"16 بكسل هو أقل حجم مريح."},
+{q:"الصور المتجاوبة محتاجة:",tp:"mcq",df:"medium",ci:1,op:["JavaScript بس","max-width: 100% و height: auto","الـ CSS Variables بس","الـ Grid بس"],ex:"الخاصيتين دول في الـ CSS."},
+{q:"جوجل بتستخدم الـ Mobile-first indexing معناها:",tp:"mcq",df:"hard",ci:1,op:["جوجل بتستخدم الموبايل بس","جوجل بتفهرس نسخة الموبايل من الموقع الأول","جوجل للموبايل بس","جوجل أسرع على الموبايل"],ex:"جوجل بتفهرس نسخة الموبايل الأول."},
+{q:"clamp(2rem, 5vw, 3rem) معناها:",tp:"mcq",df:"hard",ci:1,op:["حجم ثابت 2rem","حجم مرن: أقل 2rem، المفضل 5% من العرض، أكبر 3rem","حجم ثابت 3rem","خطأ في الكتابة"],ex:"القيمة بتتحرك بين 2rem و 3rem حسب عرض الشاشة."}
+];
+
+QB[12] = [
+{q:"الشكل الصحيح لتعريف متغير في الـ CSS:",tp:"mcq",df:"easy",ci:2,op:["$primary: #7C3AED;","@primary: #7C3AED;","--primary: #7C3AED;","var-primary: #7C3AED;"],ex:"الـ CSS Variables بتبدأ بشرطتين: --اسم: القيمة;"},
+{q:"إزاي تستخدم متغير الـ CSS؟",tp:"mcq",df:"easy",ci:1,op:["color: $primary;","color: var(--primary);","color: @primary;","color: --primary;"],ex:"var() بتستخدم المتغير."},
+{q:"الشكل الصحيح لكتابة الـ calc():",tp:"mcq",df:"medium",ci:1,op:["width: calc(100%-20px);","width: calc(100% - 20px);","width: calculate(100% - 20px);","width: math(100% - 20px);"],ex:"لازم مسافة قبل وبعد علامة الطرح أو الجمع."},
+{q:"ترتيب القيم في الـ box-shadow:",tp:"mcq",df:"medium",ci:1,op:["اللون، الضبابية، الإزاحة","الإزاحة الأفقية، الرأسية، الضبابية، الانتشار، اللون","الضبابية، الإزاحة، اللون","الإزاحة، اللون، الضبابية"],ex:"الترتيب: أفقي، رأسي، ضبابية، انتشار، لون."},
+{q:"الشكل الصحيح لكتابة الـ linear-gradient:",tp:"mcq",df:"easy",ci:1,op:["background: gradient(linear, red, blue);","background: linear-gradient(red, blue);","background: linear(red to blue);","background: gradient-linear(red, blue);"],ex:"linear-gradient(لون1، لون2)."},
+{q:"الخاصية اللي بتخلي التغييرات تبقى سلسة:",tp:"mcq",df:"easy",ci:1,op:["animation","transition","transform","motion"],ex:"الـ transition بتخلي التغييرات تحصل بالتدريج."},
+{q:"القيمة اللي بتحريك العنصر في الـ transform:",tp:"mcq",df:"easy",ci:1,op:["transform: move(10px);","transform: translate(10px, 20px);","transform: position(10px);","transform: shift(10px);"],ex:"translate بتحريك العنصر."},
+{q:"الـ Pseudo-class اللي بيشتغل لما الماوس يبقى فوق العنصر:",tp:"mcq",df:"easy",ci:2,op:[":active",":focus",":hover",":mouseover"],ex:":hover بيشتغل لما الماوس فوق العنصر."},
+{q:"الشكل الصحيح لاستخدام ::before:",tp:"mcq",df:"medium",ci:1,op:[".el:before { content: 'x'; }",".el::before { content: 'نص'; }",".el::before { text: 'نص'; }",".el:before { text: 'نص'; }"],ex:"الـ ::before لازم يكون فيه خاصية الـ content."},
+{q:"ليه بنستخدم الـ transition مع الـ transform؟",tp:"mcq",df:"medium",ci:1,op:["الـ transform مش بيشتغل من غيره","عشان التغيير يحصل بشكل سلس","الـ transform محتاج الـ transition","مش لازم"],ex:"الـ transition بتخلي الـ تغيير سلس."},
+{q:"الـ :root هو العنصر الأعلى في الـ HTML.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! الـ :root هو عنصر الـ <html>."},
+{q:"الـ radial-gradient وظيفته:",tp:"mcq",df:"medium",ci:1,op:["تدرج خطي","تدرج دائري من المركز للخارج","لون ثابت","صورة"],ex:"الـ radial-gradient بيبدأ من المركز ويطلع للخارج."},
+{q:"transition: all 0.3s ease معناها:",tp:"mcq",df:"medium",ci:0,op:["كل الخصائص، 0.3 ثانية، حركة سلسة","خاصية واحدة بس","3 ثواني","خطأ"],ex:"all = كل الخصائص. 0.3s = المدة. ease = النوع."},
+{q:"الـ ::selection وظيفته:",tp:"mcq",df:"medium",ci:1,op:["اختيار عنصر","تغيير شكل النص لما المستخدم يحدده بالماوس","إخفاء النص","تكبير النص"],ex:"الـ ::selection بيغير شكل النص المحدد."},
+{q:"الـ box-shadow: inset وظيفته:",tp:"mcq",df:"hard",ci:1,op:["ظل خارجي","ظل داخلي (جوه العنصر)","إخفاء الظل","تكبير الظل"],ex:"inset بيخلي الظل جوه العنصر."},
+{q:"الـ CSS Variables بتشتغل في كل المتصفحات القديمة.",tp:"tf",df:"hard",ci:1,op:["صح","غلط"],ex:"غلط! مش بتشتغل في المتصفحات القديمة جداً."},
+{q:"transform: scale(1.5) وظيفته:",tp:"mcq",df:"easy",ci:1,op:["تصغير العنصر","تكبير العنصر لـ 150% من حجمه","تحريك العنصر","تدوير العنصر"],ex:"scale(1.5) بتكبر العنصر مرة ونص."},
+{q:"transform: rotate(45deg) وظيفته:",tp:"mcq",df:"easy",ci:2,op:["تحريك العنصر","تكبير العنصر","تدوير العنصر 45 درجة","إمالة العنصر"],ex:"rotate بتدور العنصر بزاوية معينة."},
+{q:"الـ transition-timing-function: ease-in-out معناها:",tp:"mcq",df:"hard",ci:1,op:["سرعة ثابتة","تبدأ بطيئة، تسرع، وتبطئ في النهاية","سريعة في البداية","بطيئة في النهاية"],ex:"ease-in-out بتبدأ وتخلص بشكل سلس."},
+{q:"الـ ::placeholder وظيفته:",tp:"mcq",df:"medium",ci:1,op:["تغيير شكل النص الأساسي","تغيير شكل النص الإرشادي في الحقول","إخفاء النص الإرشادي","إضافة نص إرشادي"],ex:"الـ ::placeholder بيغير شكل النص الإرشادي."}
+];
+
+QB[13] = [
+{q:"أول خطوة في بناء أي مشروع:",tp:"mcq",df:"easy",ci:1,op:["كتابة الكود مباشرة","التخطيط (Wireframe) وتحديد الأقسام","اختيار الألوان","كتابة الـ HTML"],ex:"التخطيط الأول بيخليك عارف هتعمل إيه."},
+{q:"الصفحة الرئيسية لازم اسمها:",tp:"mcq",df:"easy",ci:2,op:["home.html","main.html","index.html","start.html"],ex:"الصفحة الرئيسية لازم اسمها دايماً عشان السيرفر يعرف يفتحها."},
+{q:"الـ CSS Variables في المشروع بتساعد في:",tp:"mcq",df:"medium",ci:1,op:["تسريع الموقع","إعادة استخدام القيم وتسهيل التعديل","إخفاء الكود","تصغير حجم الملفات"],ex:"المتغيرات بتخليك تغير قيمة في مكان واحد."},
+{q:"عشان تعمل شريط تنقل ثابت أعلى الصفحة:",tp:"mcq",df:"medium",ci:2,op:["position: absolute","position: relative","position: sticky أو position: fixed","position: static"],ex:"الـ ثابت والـ لاصق بيثبتوا الشريط."},
+{q:"أفضل طريقة لتوسيط الـ Hero Section:",tp:"mcq",df:"medium",ci:1,op:["استخدام الـ Float","استخدام الـ Flexbox للتوسيط","استخدام الـ Table","استخدام الـ Inline-block"],ex:"الـ Flexbox بيخليك توسط المحتوى بسهولة."},
+{q:"أفضل طريقة لبناء قسم المهارات:",tp:"mcq",df:"medium",ci:1,op:["Grid ثابت","Grid مع auto-fit و minmax","جدول","قوائم"],ex:"الـ auto-fit مع الـ بتخلي الكروت تتجاوب."},
+{q:"أفضل طريقة لبناء قسم المشاريع:",tp:"mcq",df:"medium",ci:1,op:["استخدام الـ Float","استخدام الـ Grid مع auto-fit و minmax","استخدام الـ Table","استخدام الـ Inline-block"],ex:"الـ Grid مع الـ هو أفضل طريقة للكروت."},
+{q:"الـ Contact Form محتاج:",tp:"mcq",df:"easy",ci:2,op:["HTML بس","CSS بس","HTML + CSS + Validation","JavaScript بس"],ex:"الـ Form محتاج هيكل + تصميم + تحقق."},
+{q:"كل حقل إدخال في الـ Form لازم يكون معاه:",tp:"mcq",df:"easy",ci:1,op:["مش لازم أي حاجة","لازم يكون معاه <label> مرتبط بيه","<div> بس","صورة"],ex:"كل حقل لازم يكون معاه عشان الـ والـ."},
+{q:"الصور المتجاوبة في المشروع محتاجة:",tp:"mcq",df:"medium",ci:1,op:["width: 100% بس","max-width: 100% + height: auto","object-fit: cover بس","مش محتاجة"],ex:"الخاصيتين دول بيخلوا الصورة متجاوبة."},
+{q:"تأثيرات الـ hover لازم تكون:",tp:"mcq",df:"medium",ci:1,op:["فورية","سلسة باستخدام الـ transition","كبيرة جداً","مش مهمة"],ex:"الـ transition بتخلي الـ تأثيرات سلسة."},
+{q:"الـ Footer في المشروع بيحتوي على:",tp:"mcq",df:"easy",ci:1,op:["قائمة التنقل الرئيسية","روابط السوشيال ميديا وحقوق النشر","الـ Hero Section","الـ Forms"],ex:"الـ Footer فيه معلومات التواصل والحقوق."},
+{q:"الـ Global Reset لازم يكون في كل مشروع.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! الـ Reset بيخليك تبدأ من نقطة صفر."},
+{q:"اختبار المشروع بيتم على:",tp:"mcq",df:"medium",ci:1,op:["جهاز واحد بس","متصفحات وأجهزة مختلفة","مش مهم","على الموبايل بس"],ex:"لازم تختبر على متصفحات مختلفة."},
+{q:"الـ Comments في الكود:",tp:"mcq",df:"easy",ci:1,op:["مش مهمة وبتبطئ الموقع","مهمة جداً لتنظيم الكود وشرحه","بتكبر حجم الموقع","اختيارية تماماً"],ex:"الـ بتخلي الكود سهل الفهم."},
+{q:"تحسين الأداء في المشروع بيتم عن طريق:",tp:"mcq",df:"hard",ci:0,op:["ضغط الصور + تنظيم الـ CSS","تكبير كل الملفات","استخدام صور كبيرة","مش مهم"],ex:"ضغط الصور وتنظيم الكود بيحسنوا السرعة."},
+{q:"الـ Accessibility في المشروع محتاجة:",tp:"mcq",df:"medium",ci:1,op:["مش مهمة","للصور + للـ + استخدام الـ","الموبايل بس","الكمبيوتر بس"],ex:"الـ بتخلي الموقع متاح لكل الناس."},
+{q:"الـ SEO في المشروع محتاج:",tp:"mcq",df:"medium",ci:1,op:["مش مهم","الـ + الـ + المحتوى الجيد","الصور بس","النصوص بس"],ex:"الـ بيخلي الموقع يظهر في نتائج البحث."},
+{q:"أسلوب الـ Mobile-first معناه:",tp:"mcq",df:"medium",ci:1,op:["نبدأ من الكمبيوتر","نبدأ من الموبايل ونبني للأعلى","نعمل 3 مواقع","مش مهم"],ex:"الـ بيخليك تبدأ من الشاشات الصغيرة."},
+{q:"المشروع النهائي في المستوى الأول بيجمع:",tp:"mcq",df:"easy",ci:2,op:["HTML بس","CSS بس","كل المهارات: + + + + +","الـ JavaScript بس"],ex:"المشروع النهائي بيجمع كل اللي اتعلمته."}
+];
+
+QB[14] = [
+{q:"الـ Final Project بيجمع:",tp:"mcq",df:"easy",ci:2,op:["HTML بس","CSS بس","كل المهارات اللي اتعلمتها في المستوى","الـ JavaScript"],ex:"المشروع النهائي بيجمع كل اللي اتعلمته."},
+{q:"عرض المشروع لازم يكون:",tp:"mcq",df:"medium",ci:1,op:["سريع جداً بدون كلام","منظم + شرح القرارات + عرض على أجهزة مختلفة","على جهاز واحد بس","بدون شرح"],ex:"العرض الجيد بيبين إنك فاهم اللي عملته."},
+{q:"معايير تقييم المشروع النهائي:",tp:"mcq",df:"medium",ci:1,op:["الجمال بس","الـ + الـ + الـ + الـ + التأثيرات + جودة الكود","السرعة بس","الحجم بس"],ex:"التقييم بيكون على كل الجوانب."},
+{q:"الـ Reflection بعد المشروع معناها:",tp:"mcq",df:"medium",ci:1,op:["مش مهمة","مراجعة: إيه اتعلمت + أصعب حاجة + الخطط الجاية","للمحاضر بس","اختيارية"],ex:"الـ بيخليك تراجع رحلتك."},
+{q:"المستوى الجاي في المسار:",tp:"mcq",df:"easy",ci:2,op:["HTML تاني","CSS تاني","الـ JavaScript","الـ React"],ex:"الـ JavaScript هي الخطوة الجاية."},
+{q:"الـ JavaScript مختلف عن الـ والـ في أنه:",tp:"mcq",df:"medium",ci:1,op:["مش مختلف","لغة برمجة فيها منطق مش مجرد تنسيق","أسهل منهم","أصعب بس"],ex:"الـ فيها متغيرات ودوال ومنطق."},
+{q:"الـ Portfolio بعد المستوى الأول مهم لـ:",tp:"mcq",df:"medium",ci:1,op:["مش مهم","عرض مهاراتك لأي شركة أو عميل","الطلاب بس","اختياري"],ex:"الـ هو دليل شغلك."},
+{q:"الـ Git والـ GitHub مهمين لـ:",tp:"mcq",df:"medium",ci:1,op:["مش مهمين","رفع المشاريع والتحكم في الإصدارات","المحترفين بس","اختياري"],ex:"الـ بيخليك تحفظ شغلك."},
+{q:"نشر موقع على الإنترنت مجاناً ممكن عن طريق:",tp:"mcq",df:"medium",ci:1,op:["مش ممكن"," أو","لازم تدفع فلوس","للشركات بس"],ex:"الـ والـ بيقدموا نشر مجاني."},
+{q:"الـ MDN Web Docs هو:",tp:"mcq",df:"easy",ci:1,op:["لغة برمجة","المرجع الرسمي لـ والـ والـ من موزيلا","محرر كود","متصفح"],ex:"الـ هو أفضل مرجع تتعلم منه."},
+{q:"التعلم المستمر في مجال البرمجة ضروري.",tp:"tf",df:"easy",ci:0,op:["صح","غلط"],ex:"صح! المجال بيتغير بسرعة."},
+{q:"المشاريع الحقيقية بتعلمك أكتر من الكورسات بس.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! التطبيق العملي بيخليك تفهم أكتر."},
+{q:"الـ Community مهم للمطور.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! المجتمع بيساعدك تتعلم."},
+{q:"الـ Soft Skills مهمة زي الـ Technical Skills.",tp:"tf",df:"medium",ci:0,op:["صح","غلط"],ex:"صح! الشركات بتدور على ناس بتعرف تتواصل."},
+{q:"الـ Final Review بيشمل:",tp:"mcq",df:"easy",ci:2,op:["HTML بس","CSS بس","كل المستوى الأول","مشروع واحد"],ex:"الـ المراجعة النهائية بتكون على كل اللي اتعلمته."},
+{q:"مشروع التخرج هو:",tp:"mcq",df:"easy",ci:1,op:["واجب عادي","مشروع بيجمع كل المهارات وبيتعرض وبيتقيم","اختبار كتابي","مش مهم"],ex:"مشروع التخرج هو تتويج رحلتك."},
+{q:"بعد المستوى الأول، الطالب هيقدر:",tp:"mcq",df:"easy",ci:0,op:["يبني مواقع ويب كاملة متجاوبة","يبني تطبيقات معقدة جداً","يشتغل كمطور كبير","يعلم ناس تانية"],ex:"بعد المستوى الأول هتقدر تبني مواقع كاملة متجاوبة."},
+{q:"الخطوة الجاية بعد إتقان الـ والـ:",tp:"mcq",df:"easy",ci:1,op:["الـ React مباشرة","الـ JavaScript","الـ Backend","الـ Full Stack"],ex:"الـ JavaScript هي الخطوة الطبيعية الجاية."},
+{q:"المطور الناجح هو اللي:",tp:"mcq",df:"medium",ci:1,op:["بيعرف كل حاجة من الأول","بيعرف يتعلم أي حاجة بسرعة وبيستمر","بيعرف لغة واحدة بس","مش محتاج مساعدة"],ex:"أهم مهارة هي إنك تعرف تتعلم."},
+{q:"رسالة أكاديمية صن شاين:",tp:"mcq",df:"easy",ci:1,op:["تعلم بسرعة","بنحوّل الحلم لكود ☀️","البرمجة صعبة","مشروع واحد كفاية"],ex:"☀️ صن شاين أكاديمي — بنحوّل الحلم لكود!"}
+];
+
+// ---------- Exams ----------
+QB[101] = QB[1].concat(QB[2]).slice(0, 20);
+QB[102] = QB[6].concat(QB[7]).concat(QB[8]).slice(0, 20);
+QB[103] = QB[1].concat(QB[6]).concat(QB[9]).concat(QB[14]).slice(0, 20);
+
+// ============================================================
+//  UI LOGIC
+// ============================================================
+
+// --- Register ---
+$('btnStart').addEventListener('click', function(){
+  var n = $('iN').value.trim();
+  var a = parseInt($('iA').value);
+  var ok = true;
+
+  if(n.length < 3){
+    $('eN').style.display = 'block';
+    ok = false;
+  } else {
+    $('eN').style.display = 'none';
+  }
+
+  if(isNaN(a) || a < 8 || a > 99){
+    $('eA').style.display = 'block';
+    ok = false;
+  } else {
+    $('eA').style.display = 'none';
+  }
+
+  if(!ok) return;
+
+  stu.name = n;
+  stu.age = a;
+
+  var b = $('ubadge');
+  b.textContent = '👤 ' + n;
+  b.style.display = 'inline-block';
+
+  showScr('s2');
+  buildTabs();
+  renderLessons('all');
+});
+
+function showScr(id){
+  var all = document.querySelectorAll('.scr');
+  for(var i = 0; i < all.length; i++){
+    all[i].classList.remove('on');
+  }
+  $(id).classList.add('on');
+  window.scrollTo(0, 0);
+}
+
+// --- Tabs ---
+var TABS = [
+  {k: 'all', l: 'الكل'},
+  {k: 'html', l: 'HTML'},
+  {k: 'css', l: 'CSS'},
+  {k: 'proj', l: 'المشاريع'},
+  {k: 'exam', l: 'الاختبارات'}
+];
+
+function buildTabs(){
+  var bar = $('tbs');
+  bar.innerHTML = '';
+  TABS.forEach(function(t, i){
+    var b = document.createElement('button');
+    b.className = 'tab' + (i === 0 ? ' on' : '');
+    b.textContent = t.l;
+    b.addEventListener('click', function(){
+      var all = bar.querySelectorAll('.tab');
+      for(var j = 0; j < all.length; j++){
+        all[j].classList.remove('on');
+      }
+      b.classList.add('on');
+      renderLessons(t.k);
+    });
+    bar.appendChild(b);
+  });
+}
+
+// --- Lesson Cards ---
+function renderLessons(cat){
+  var g = $('lgr');
+  g.innerHTML = '';
+  LS.forEach(function(l){
+    if(cat !== 'all' && l.c !== cat) return;
+    var c = document.createElement('div');
+    c.className = 'lc' + (l.c === 'exam' ? ' ex' : '');
+    var nm = document.createElement('span');
+    nm.className = 'nm';
+    nm.textContent = l.c === 'exam' ? '🏆 اختبار' : 'الدرس ' + l.id;
+    c.appendChild(nm);
+    var h3 = document.createElement('h3');
+    h3.textContent = l.ic + ' ' + l.t;
+    c.appendChild(h3);
+    var d = document.createElement('div');
+    d.className = 'ds';
+    d.textContent = l.d;
+    c.appendChild(d);
+    var f = document.createElement('div');
+    f.className = 'ft';
+    var ct = document.createElement('span');
+    ct.className = 'ct';
+    ct.textContent = '📝 20 سؤال';
+    f.appendChild(ct);
+    var go = document.createElement('button');
+    go.className = 'go';
+    go.textContent = 'ابدأ ←';
+    go.addEventListener('click', function(){ startQuiz(l.id); });
+    f.appendChild(go);
+    c.appendChild(f);
+    g.appendChild(c);
+  });
+}
+
+// --- Quiz Engine ---
+function startQuiz(id){
+  curL = null;
+  for(var i = 0; i < LS.length; i++){
+    if(LS[i].id === id){ curL = LS[i]; break; }
+  }
+  if(!curL) return;
+  var bank = QB[id];
+  if(!bank || bank.length === 0) return;
+  var pool = shuffle(bank).slice(0, 20);
+  curQ = pool.map(function(q){
+    var so = mixOpts(q.op, q.ci);
+    return {q: q.q, tp: q.tp, df: q.df, ex: q.ex, options: so.list, correct: so.correct};
+  });
+  curI = 0;
+  ans = [];
+  okN = 0;
+  $('qT').textContent = curL.ic + ' ' + curL.t;
+  $('qTt').textContent = curQ.length;
+  showScr('s3');
+  drawQ();
+}
+
+function drawQ(){
+  var q = curQ[curI];
+  var box = $('qB');
+  box.innerHTML = '';
+  var card = document.createElement('div');
+  card.className = 'qc';
+  // badges
+  var bd = document.createElement('div');
+  bd.className = 'qb';
+  var b1 = document.createElement('span');
+  b1.className = 'bdg bdg-n';
+  b1.textContent = 'سؤال ' + (curI + 1) + ' من ' + curQ.length;
+  bd.appendChild(b1);
+  var dm = {easy: ['سهل', 'bdg-e'], medium: ['متوسط', 'bdg-m'], hard: ['صعب', 'bdg-h']};
+  var di = dm[q.df] || dm.easy;
+  var b2 = document.createElement('span');
+  b2.className = 'bdg ' + di[1];
+  b2.textContent = di[0];
+  bd.appendChild(b2);
+  var b3 = document.createElement('span');
+  b3.className = 'bdg bdg-t';
+  b3.textContent = q.tp === 'tf' ? 'صح / غلط' : 'اختيار من متعدد';
+  bd.appendChild(b3);
+  card.appendChild(bd);
+  // question — SAFE via textContent
+  var qt = document.createElement('div');
+  qt.className = 'qtx';
+  qt.textContent = q.q;
+  card.appendChild(qt);
+  // options — SAFE via textContent (THE FIX)
+  var ul = document.createElement('ul');
+  ul.className = 'ops';
+  var lts = ['أ', 'ب', 'ج', 'د'];
+  q.options.forEach(function(ot, oi){
+    var li = document.createElement('li');
+    li.className = 'op';
+    var lt = document.createElement('span');
+    lt.className = 'lt';
+    lt.textContent = q.tp === 'tf' ? (oi === 0 ? '✔' : '✘') : lts[oi];
+    var tx = document.createElement('span');
+    tx.className = 'ot';
+    tx.textContent = ot;
+    li.appendChild(lt);
+    li.appendChild(tx);
+    li.addEventListener('click', function(){ pick(oi); });
+    ul.appendChild(li);
+  });
+  card.appendChild(ul);
+  // feedback
+  var fb = document.createElement('div');
+  fb.className = 'fb';
+  fb.id = 'fb';
+  card.appendChild(fb);
+  box.appendChild(card);
+  // update UI
+  $('qC').textContent = curI + 1;
+  $('qO').textContent = okN;
+  $('pF').style.width = Math.round(((curI + 1) / curQ.length) * 100) + '%';
+  var nb = $('btnNx');
+  nb.classList.remove('sh', 'fn');
+  if(curI === curQ.length - 1){
+    nb.textContent = '🏆 النهاية';
+    nb.classList.add('fn');
+  } else {
+    nb.textContent = 'التالي ←';
+  }
+}
+
+function pick(oi){
+  var q = curQ[curI];
+  var ops = document.querySelectorAll('#qB .op');
+  if(ops[0].classList.contains('lk')) return;
+  for(var i = 0; i < ops.length; i++){
+    ops[i].classList.add('lk');
+  }
+  var isR = (oi === q.correct);
+  ops[oi].classList.add(isR ? 'rt' : 'wr');
+  if(!isR){
+    ops[q.correct].classList.add('rt');
+  }
+  if(isR) okN++;
+  ans.push({i: curI, ch: oi, co: q.correct, r: isR});
+  $('qO').textContent = okN;
+  var fb = $('fb');
+  fb.className = 'fb sh ' + (isR ? 'fr' : 'fw');
+  fb.innerHTML = '';
+  var h4 = document.createElement('h4');
+  h4.textContent = isR ? '✅ إجابة صحيحة! أحسنت' : '❌ إجابة خاطئة — الإجابة الصحيحة هي اللي بالأخضر';
+  fb.appendChild(h4);
+  var ex = document.createElement('div');
+  ex.className = 'ex';
+  var st = document.createElement('strong');
+  st.textContent = '💡 الشرح: ';
+  ex.appendChild(st);
+  var sp = document.createElement('span');
+  sp.textContent = q.ex;
+  ex.appendChild(sp);
+  fb.appendChild(ex);
+  $('btnNx').classList.add('sh');
+}
+
+$('btnNx').addEventListener('click', function(){
+  if(curI < curQ.length - 1){
+    curI++;
+    drawQ();
+  } else {
+    showScr('s4');
+    drawRes();
+  }
+});
+
+$('btnExit').addEventListener('click', function(){
+  if(confirm('هل أنت متأكد من الخروج؟ هتفقد تقدمك.')){
+    showScr('s2');
+  }
+});
+
+// --- Results ---
+function drawRes(){
+  var box = $('rB');
+  box.innerHTML = '';
+  var total = curQ.length;
+  var pct = Math.round((okN / total) * 100);
+  var wrong = total - okN;
+  var grade, gcol;
+  if(pct >= 90){ grade = 'ممتاز 🏆'; gcol = '#16a34a'; }
+  else if(pct >= 75){ grade = 'جيد جداً 🌟'; gcol = '#1a5c3a'; }
+  else if(pct >= 60){ grade = 'جيد 👍'; gcol = '#d97706'; }
+  else if(pct >= 50){ grade = 'مقبول 📚'; gcol = '#d4a03c'; }
+  else { grade = 'يحتاج مراجعة 💪'; gcol = '#dc2626'; }
+
+  // hero
+  var hero = document.createElement('div');
+  hero.className = 'rh';
+  var ring = document.createElement('div');
+  ring.className = 'sr';
+  var bg = document.createElement('div');
+  bg.className = 'b';
+  bg.textContent = okN;
+  ring.appendChild(bg);
+  var sm = document.createElement('div');
+  sm.className = 's';
+  sm.textContent = 'من ' + total;
+  ring.appendChild(sm);
+  hero.appendChild(ring);
+  var h2 = document.createElement('h2');
+  h2.textContent = grade;
+  hero.appendChild(h2);
+  var mt = document.createElement('div');
+  mt.className = 'mt';
+  mt.textContent = 'الطالب: ' + stu.name + ' | السن: ' + stu.age + ' | الدرس: ' + curL.t + ' | النسبة: ' + pct + '%';
+  hero.appendChild(mt);
+  box.appendChild(hero);
+
+  // stats
+  var stats = document.createElement('div');
+  stats.className = 'rs';
+  function addSt(ico, val, lbl, cls){
+    var s = document.createElement('div');
+    s.className = 'rst' + (cls ? ' ' + cls : '');
+    var i = document.createElement('div'); i.className = 'i'; i.textContent = ico;
+    var v = document.createElement('div'); v.className = 'v'; v.textContent = val;
+    var l = document.createElement('div'); l.className = 'l'; l.textContent = lbl;
+    s.appendChild(i); s.appendChild(v); s.appendChild(l);
+    stats.appendChild(s);
+  }
+  addSt('✅', okN, 'إجابة صحيحة', 'so');
+  addSt('❌', wrong, 'إجابة خاطئة', 'sn');
+  addSt('📊', pct + '%', 'النسبة المئوية', '');
+  addSt('🏆', grade.split(' ')[0], 'التقدير', '');
+  box.appendChild(stats);
+
+  // review
+  var rb = document.createElement('div');
+  rb.className = 'rb';
+  var h3 = document.createElement('h3');
+  h3.textContent = '📋 مراجعة كل الأسئلة مع الشرح';
+  rb.appendChild(h3);
+  var lts = ['أ', 'ب', 'ج', 'د'];
+  curQ.forEach(function(q, i){
+    var a = ans[i];
+    var isR = a.r;
+    var rq = document.createElement('div');
+    rq.className = 'rq ' + (isR ? 'ro' : 'rn');
+    var top = document.createElement('div');
+    top.className = 'rqt';
+    var num = document.createElement('span');
+    num.className = 'rqn';
+    num.textContent = 'سؤال ' + (i + 1);
+    top.appendChild(num);
+    var dm = {easy: 'سهل', medium: 'متوسط', hard: 'صعب'};
+    var db = document.createElement('span');
+    db.className = 'bdg ' + (q.df === 'easy' ? 'bdg-e' : q.df === 'medium' ? 'bdg-m' : 'bdg-h');
+    db.textContent = dm[q.df] || '';
+    top.appendChild(db);
+    var st = document.createElement('span');
+    st.className = 'rqs ' + (isR ? 'ok' : 'no');
+    st.textContent = isR ? '✓ إجابة صحيحة' : '✗ إجابة خاطئة';
+    top.appendChild(st);
+    rq.appendChild(top);
+    var qt = document.createElement('div');
+    qt.className = 'rqq';
+    qt.textContent = q.q;
+    rq.appendChild(qt);
+    var ab = document.createElement('div');
+    ab.className = 'rqa';
+    q.options.forEach(function(ot, oi){
+      var ra = document.createElement('div');
+      ra.className = 'ra';
+      var ic = document.createElement('span');
+      ic.className = 'ri';
+      var tx = document.createElement('span');
+      tx.textContent = ot;
+      if(oi === a.co){
+        ra.classList.add('ro2');
+        ic.textContent = '✓';
+      } else if(oi === a.ch && !isR){
+        ra.classList.add('rn2');
+        ic.textContent = '✗';
+      } else {
+        ic.textContent = q.tp === 'tf' ? (oi === 0 ? '✔' : '✘') : lts[oi];
+      }
+      ra.appendChild(ic);
+      ra.appendChild(tx);
+      ab.appendChild(ra);
+    });
+    rq.appendChild(ab);
+    var eb = document.createElement('div');
+    eb.className = 'rqe';
+    var es = document.createElement('strong');
+    es.textContent = '💡 شرح الإجابة:';
+    eb.appendChild(es);
+    var ep = document.createElement('p');
+    ep.textContent = q.ex;
+    eb.appendChild(ep);
+    rq.appendChild(eb);
+    rb.appendChild(rq);
+  });
+  box.appendChild(rb);
+
+  // actions
+  var acts = document.createElement('div');
+  acts.className = 'rac';
+  var b1 = document.createElement('button');
+  b1.className = 'btn btn-go';
+  b1.textContent = '🔄 إعادة الاختبار';
+  b1.addEventListener('click', function(){ startQuiz(curL.id); });
+  acts.appendChild(b1);
+  var b2 = document.createElement('button');
+  b2.className = 'btn btn-out';
+  b2.textContent = '📚 اختيار درس آخر';
+  b2.addEventListener('click', function(){ showScr('s2'); });
+  acts.appendChild(b2);
+  var b3 = document.createElement('button');
+  b3.className = 'btn btn-gold';
+  b3.textContent = '🖨️ طباعة النتيجة';
+  b3.addEventListener('click', function(){ window.print(); });
+  acts.appendChild(b3);
+  box.appendChild(acts);
+}
+</script>
+</body>
+</html>
